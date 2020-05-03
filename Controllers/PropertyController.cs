@@ -1,0 +1,70 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
+using smartLiving.Models;
+using smartLiving.Repostries;
+
+namespace smartLiving.Controllers
+{
+    [Route("api/Property")]
+    [ApiController]
+    public class PropertyController : ControllerBase
+    {
+        private readonly PropertyRepositry context;
+
+        public PropertyController(PropertyRepositry PropertyRepositry)
+        {
+            context = PropertyRepositry;
+        }
+        [HttpGet]
+        public async Task<string> getAllPropertysData()
+        {
+
+            var PropertyData = await context.retriveAllData();
+            return JsonConvert.SerializeObject(PropertyData);
+
+        }
+        //http://localhost:5000/api/Property/1       
+        [HttpGet("{id}", Name = "PropertyProfile")]
+        public async Task<string> getPropertyData(string id)
+        {
+            var PropertyData = await context.retrieve(id);
+            if (PropertyData == null)
+                return null;
+            return JsonConvert.SerializeObject(PropertyData);
+        }
+
+        [HttpPost(Name = "PropertyRegister")]
+        public async Task<String> registerProperty([FromBody]Property Property)
+
+        {
+            var PropertyData = await context.retrieve(Property.propertyId);
+
+
+            PropertyData = JsonConvert.SerializeObject(PropertyData);
+            if (PropertyData.ToString() == "[]")
+            {
+                await context.insert(Property);
+
+                return "true";
+            }
+
+            return PropertyData.ToString();
+        }
+
+
+
+        [HttpPut
+        ]
+        public async Task<ActionResult> updatePropertyProfile([FromBody]Property Property)
+        {
+
+
+            await context.update(Property.propertyId, Property);
+            return Ok(Property);
+        }
+    }
+}

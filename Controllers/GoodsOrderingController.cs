@@ -1,0 +1,70 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
+using smartLiving.Models;
+using smartLiving.Repostries;
+
+namespace smartLiving.Controllers
+{
+    [Route("api/GoodsOrdering")]
+    [ApiController]
+    public class GoodsOrderingController : ControllerBase
+    {
+        private readonly GoodsOrderingRepositry context;
+
+        public GoodsOrderingController(GoodsOrderingRepositry GoodsOrderingRepositry)
+        {
+            context = GoodsOrderingRepositry;
+        }
+        [HttpGet]
+        public async Task<string> getAllGoodsOrderingsData()
+        {
+
+            var GoodsOrderingData = await context.retriveAllData();
+            return JsonConvert.SerializeObject(GoodsOrderingData);
+
+        }
+        //http://localhost:5000/api/GoodsOrdering/1       
+        [HttpGet("{id}", Name = "GoodsOrderingProfile")]
+        public async Task<string> getGoodsOrderingData(string societyId)
+        {
+            var GoodsOrderingData = await context.retrieve(societyId);
+            if (GoodsOrderingData == null)
+                return null;
+            return JsonConvert.SerializeObject(GoodsOrderingData);
+        }
+
+        [HttpPost(Name = "GoodsOrderingRegister")]
+        public async Task<String> registerGoodsOrdering([FromBody]GoodsOrdering GoodsOrdering)
+
+        {
+            var GoodsOrderingData = await context.retrieve(GoodsOrdering.orderId);
+
+
+            GoodsOrderingData = JsonConvert.SerializeObject(GoodsOrderingData);
+            if (GoodsOrderingData.ToString() == "[]")
+            {
+                await context.insert(GoodsOrdering);
+
+                return "true";
+            }
+
+            return GoodsOrderingData.ToString();
+        }
+
+
+
+        [HttpPut]
+        public async Task<ActionResult> updateGoodsOrderingProfile([FromBody]GoodsOrdering GoodsOrdering)
+        {
+
+
+            await context.update(GoodsOrdering.orderId, GoodsOrdering);
+            return Ok(GoodsOrdering);
+        }
+    }
+}
