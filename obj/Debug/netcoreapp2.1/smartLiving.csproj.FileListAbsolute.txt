@@ -12,3 +12,17 @@ C:\Users\luqman ahmed\source\repos\smartLiving\bin\Debug\netcoreapp2.1\smartLivi
 C:\Users\luqman ahmed\source\repos\smartLiving\obj\Debug\netcoreapp2.1\smartLiving.dll
 C:\Users\luqman ahmed\source\repos\smartLiving\obj\Debug\netcoreapp2.1\smartLiving.pdb
 C:\Users\luqman ahmed\source\repos\smartLiving\obj\Debug\netcoreapp2.1\smartLiving.csproj.CoreCompileInputs.cache
+E:\GIT\smartLiving\FYPSmartLivingcovid19\bin\Debug\netcoreapp2.1\smartLiving.deps.json
+E:\GIT\smartLiving\FYPSmartLivingcovid19\bin\Debug\netcoreapp2.1\smartLiving.runtimeconfig.json
+E:\GIT\smartLiving\FYPSmartLivingcovid19\bin\Debug\netcoreapp2.1\smartLiving.runtimeconfig.dev.json
+E:\GIT\smartLiving\FYPSmartLivingcovid19\bin\Debug\netcoreapp2.1\smartLiving.dll
+E:\GIT\smartLiving\FYPSmartLivingcovid19\bin\Debug\netcoreapp2.1\smartLiving.pdb
+E:\GIT\smartLiving\FYPSmartLivingcovid19\obj\Debug\netcoreapp2.1\smartLiving.csprojAssemblyReference.cache
+E:\GIT\smartLiving\FYPSmartLivingcovid19\obj\Debug\netcoreapp2.1\smartLiving.csproj.CoreCompileInputs.cache
+E:\GIT\smartLiving\FYPSmartLivingcovid19\obj\Debug\netcoreapp2.1\smartLiving.RazorAssemblyInfo.cache
+E:\GIT\smartLiving\FYPSmartLivingcovid19\obj\Debug\netcoreapp2.1\smartLiving.RazorAssemblyInfo.cs
+E:\GIT\smartLiving\FYPSmartLivingcovid19\obj\Debug\netcoreapp2.1\smartLiving.AssemblyInfoInputs.cache
+E:\GIT\smartLiving\FYPSmartLivingcovid19\obj\Debug\netcoreapp2.1\smartLiving.AssemblyInfo.cs
+E:\GIT\smartLiving\FYPSmartLivingcovid19\obj\Debug\netcoreapp2.1\smartLiving.RazorTargetAssemblyInfo.cache
+E:\GIT\smartLiving\FYPSmartLivingcovid19\obj\Debug\netcoreapp2.1\smartLiving.dll
+E:\GIT\smartLiving\FYPSmartLivingcovid19\obj\Debug\netcoreapp2.1\smartLiving.pdb

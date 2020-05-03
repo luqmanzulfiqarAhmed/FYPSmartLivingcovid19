@@ -13616,11 +13616,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\luqman ahmed\\source\\repos\\smartLiving\\smartLiving.csproj",
+      "projectUniqueName": "E:\\GIT\\smartLiving\\FYPSmartLivingcovid19\\smartLiving.csproj",
       "projectName": "smartLiving",
-      "projectPath": "C:\\Users\\luqman ahmed\\source\\repos\\smartLiving\\smartLiving.csproj",
+      "projectPath": "E:\\GIT\\smartLiving\\FYPSmartLivingcovid19\\smartLiving.csproj",
       "packagesPath": "C:\\Users\\luqman ahmed\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\luqman ahmed\\source\\repos\\smartLiving\\obj\\",
+      "outputPath": "E:\\GIT\\smartLiving\\FYPSmartLivingcovid19\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\dotnet\\sdk\\NuGetFallbackFolder"

@@ -27,8 +27,12 @@ namespace smartLiving.Models
         public String PropertyName;
         [BsonElement("PropertyDiscription")]
         public String PropertyDiscription;
-        [BsonElement("longLat")]
-        public String longLat;
+        [BsonElement("lng")]
+        public String lng;
+        [BsonElement("lat")]
+        public String lat;
+
+
         [BsonElement("Commercial")] 
         public Commercial Commercial;
 
