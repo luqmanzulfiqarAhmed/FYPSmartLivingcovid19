@@ -29,7 +29,9 @@ namespace TestProjectProperty
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             services.AddScoped<PropertyRepositry>();
+            services.AddScoped<SocietyRepositry>();
             services.AddScoped<AdminRepositry>();
+            
             services.AddScoped<AnnouncementRepositry>();
             services.AddScoped<ComplainRepositry>();
             services.AddScoped<EmergencyTaskResponseRepositry>();
@@ -39,7 +41,7 @@ namespace TestProjectProperty
             services.AddScoped<MaintainanceTaskResponseRepositry>();
             services.AddScoped<MarriageHallReservationRepositry>();
             services.AddScoped<ResidentRepositry>();
-            services.AddScoped<SocietyRepositry>();
+            
             services.AddScoped<TransportRepositry>();
             services.AddScoped<ManageBillRepositry>();
         }

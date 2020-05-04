@@ -30,13 +30,14 @@ namespace smartLiving.Controllers
         }
         //http://localhost:5000/api/Society/1       
         [HttpGet("{id}", Name = "SocietyProfile")]
-        public async Task<string> getSocietyData(string societyId)
+        public async Task<string> getSocietyData(string id)
         {
-            var SocietyData = await context.retrieve(societyId);
+            var SocietyData = await context.retrieve(id);
             if (SocietyData == null)
                 return null;
             return JsonConvert.SerializeObject(SocietyData);
         }
+        
 
         [HttpPost(Name = "SocietyRegister")]
         public async Task<String> registerSociety([FromBody]Society Society)

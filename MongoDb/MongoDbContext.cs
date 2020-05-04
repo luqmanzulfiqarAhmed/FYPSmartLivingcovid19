@@ -16,8 +16,8 @@ namespace smartLiving.MongoDb
         private MongoDbContext(IConfiguration config)
         {
 
-            //var client = new MongoClient("mongodb://localhost:27017");
-            //database = client.GetDatabase("HousingSocietyAppBuilder");
+            // var client = new MongoClient("mongodb://localhost:27017");
+            // database = client.GetDatabase("HousingSocietyAppBuilder");
 
             string connectionString =
   @"mongodb://smartlivingdb:zyCRVgRxGCJ61dHaQ3VDBqwAt3MGjSb2SbbECCt9wroIX26Ne1m9lEj6Uk2B65nxYVzvEQjfgmlOasG0ZfcsuA==@smartlivingdb.documents.azure.com:10255/?ssl=true&replicaSet=globaldb";

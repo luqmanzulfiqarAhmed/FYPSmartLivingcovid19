@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace smartLiving.Models
 {
+    [BsonIgnoreExtraElements]
     public class Society
     {
         public Society() { }
@@ -24,7 +25,7 @@ namespace smartLiving.Models
         [BsonElement("societyImage")]
         public string societyImage;//data type will be change
         [BsonElement("boundaries")]
-        public List<Boundaries> boundaries;
+        public List<String> boundaries;
         [BsonElement("services")]
         public Service services;
             

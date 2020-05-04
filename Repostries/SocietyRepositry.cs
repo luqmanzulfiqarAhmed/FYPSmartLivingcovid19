@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace smartLiving.Repostries
 {
-    public class SocietyRepositry : InterfaceDataBase
+    public class SocietyRepositry 
     {
         private MongoDbContext dbContext = null;
         public SocietyRepositry(IConfiguration config)
@@ -44,8 +44,10 @@ namespace smartLiving.Repostries
 
         public async Task<object> retrieve(string pId)
         {
-            var Society = Builders<Society>.Filter.Eq("societyId", pId);
-            return await collection.Find(Society).ToListAsync();
+            var society = Builders<Society>.Filter.Eq("societyId", pId);
+            return await collection.Find(society).ToListAsync();
+
+            
         }
 
         public async Task<object> retrieveAll(string societyId)

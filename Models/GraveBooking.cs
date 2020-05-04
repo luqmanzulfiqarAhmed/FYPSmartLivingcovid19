@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace smartLiving.Models
 {
+    [BsonIgnoreExtraElements]
     public class GraveBooking
     {
         [BsonElement("societyId")]
