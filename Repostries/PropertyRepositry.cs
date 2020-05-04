@@ -6,7 +6,7 @@ using smartLiving.MongoDb;
 
 namespace smartLiving.Repostries
 {
-    public class PropertyRepositry:InterfaceDataBase
+    public class PropertyRepositry
     {
         private MongoDbContext dbContext = null;
         public PropertyRepositry(IConfiguration config)
@@ -30,12 +30,20 @@ namespace smartLiving.Repostries
             return true;
         }
 
-        public async Task<object> insert(object obj)
+        public async Task<bool> insert(Property[] properties)
         {
-            Property Property = (Property)obj;
             
-            await collection.InsertOneAsync((Property)Property);
+            
+            
+            try{
+            await collection.InsertManyAsync(properties);
             return true;
+            }
+            catch(MongoException ex){
+            return false;
+
+            }
+            
 
         }
 

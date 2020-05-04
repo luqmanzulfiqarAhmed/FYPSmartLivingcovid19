@@ -37,23 +37,32 @@ namespace smartLiving.Controllers
             return JsonConvert.SerializeObject(PropertyData);
         }
 
-        [HttpPost(Name = "PropertyRegister")]
-        public async Task<String> registerProperty([FromBody]Property Property)
+        // [HttpPost(Name = "PropertyRegister")]
+        // public async Task<String> registerProperty([FromBody]Property Property)
 
-        {
-            var PropertyData = await context.retrieve(Property.propertyId);
+        // {
+        //     var PropertyData = await context.retrieve(Property.propertyId);
 
 
-            PropertyData = JsonConvert.SerializeObject(PropertyData);
-            if (PropertyData.ToString() == "[]")
-            {
-                await context.insert(Property);
+        //     PropertyData = JsonConvert.SerializeObject(PropertyData);
+        //     if (PropertyData.ToString() == "[]")
+        //     {
+        //         await context.insert(Property);
 
-                return "true";
-            }
+        //         return "true";
+        //     }
 
-            return PropertyData.ToString();
+        //     return PropertyData.ToString();
+        // }
+        [HttpPost(Name = "PropertyRegisterAll")]
+        public async Task<bool> registerPropertiesAll([FromBody]Property[] Property){
+
+                bool flag =await context.insert(Property);
+                return flag;
+                
         }
+
+        
 
 
 
