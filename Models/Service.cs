@@ -50,6 +50,10 @@ namespace smartLiving.Models
         [BsonElement("announcementIsAvail")]
         public bool announcementIsAvail;
 
+        [BsonElement("manageBill")]
+        public ManageBill manageBill;
+        [BsonElement("manageBillIsAvail")]
+        public bool manageBillIsAvail;
 
     }
 }

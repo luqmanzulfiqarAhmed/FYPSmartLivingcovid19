@@ -41,6 +41,7 @@ namespace TestProjectProperty
             services.AddScoped<ResidentRepositry>();
             services.AddScoped<SocietyRepositry>();
             services.AddScoped<TransportRepositry>();
+            services.AddScoped<ManageBillRepositry>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
