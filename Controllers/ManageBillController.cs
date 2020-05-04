@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 using Microsoft.AspNetCore.Mvc;
 
-using demoELiving.Repositires;
+using smartLiving.Repositires;
 using smartLiving.Models;
 using Newtonsoft.Json;
 
@@ -42,24 +42,21 @@ namespace smartLiving.Controllers
         [HttpPost("{residentId,bill}", Name = "submitBill")]
         public async Task<ActionResult<ManageBill>> submitBill(string residentId, ManageBill bill)
         {
-            if (residentId == bill.residentId)
+            if (residentId == bill.residentEmail)
             {
                 //here first i will call 'calculateBill' function using bill object
                 await context.insert(bill);
-                return CreatedAtAction("submitBill", new ManageBill { bill_Id = bill.bill_Id }, bill);//just telling that this HouseResident is registered with this id
+                return CreatedAtAction("submitBill", new ManageBill { billId = bill.billId }, bill);//just telling that this HouseResident is registered with this id
             }
             return BadRequest();
         }
  
         [HttpPut( Name = "updateBillManageBill")]
-        public async Task<ActionResult> updateBill(string adminId, ManageBill bill)
+        public async Task<ActionResult> updateBill( ManageBill bill)
         {
-            if (adminId != bill.adminId )
-            {
-                return BadRequest();
-            }
+            
             //here first i will call 'calculateBill' function using bill object to update bill
-            await context.update(adminId, bill);
+            await context.update("", bill);
             return NoContent();
         }
 
