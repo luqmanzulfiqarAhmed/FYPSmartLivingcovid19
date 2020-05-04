@@ -22,8 +22,7 @@ namespace smartLiving.Models
         public GraveYard graveYard;
         [BsonElement("marriageHall")]
         public MarriageHall marriageHall;
-        [BsonElement("mosque")]
-        public Mosque mosque;
+        
         [BsonElement("shop")]
         public Shop shop;
         

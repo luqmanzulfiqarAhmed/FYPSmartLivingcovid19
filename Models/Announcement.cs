@@ -17,11 +17,11 @@ namespace smartLiving.Models
         [BsonElement("societyId")]
         public string societyId { get; set; }
 
-        [BsonElement("residentEmail")]
-        public string residentEmail { get; set; }
+        [BsonElement("email")]
+        public string email { get; set; }
 
-        [BsonElement("residentName")]
-        public string residentName { get; set; }
+        [BsonElement("name")]
+        public string name { get; set; }
 
         [BsonElement("submissionDateTime")]
         public string submissionDateTime { get; set; }
