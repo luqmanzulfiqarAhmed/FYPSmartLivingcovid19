@@ -61,7 +61,7 @@ namespace smartLiving.Controllers
         }
 
         [HttpPost(Name = "ResidentRegister")]
-        public async Task<String> registerResident([FromBody]Resident Resident)
+        public async Task<bool> registerResident([FromBody]Resident Resident)
 
         {
             var ResidentData = await context.retrieveByEmail(Resident.residentEmaill);
@@ -72,10 +72,10 @@ namespace smartLiving.Controllers
             {
                 await context.insert(Resident);
 
-                return "true";
+                return true;
             }
 
-            return ResidentData.ToString();
+            return false;
         }
 
 
