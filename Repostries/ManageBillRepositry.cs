@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using smartLiving.Models;
 using smartLiving.MongoDb;
 
-namespace smartLiving.Repositires
+namespace smartLiving.Repostries
 {
     public class ManageBillRepositry 
     {

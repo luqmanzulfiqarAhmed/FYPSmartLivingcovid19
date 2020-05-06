@@ -18,7 +18,6 @@ E:\GIT\smartLiving\FYPSmartLivingcovid19\bin\Debug\netcoreapp2.1\smartLiving.run
 E:\GIT\smartLiving\FYPSmartLivingcovid19\bin\Debug\netcoreapp2.1\smartLiving.dll
 E:\GIT\smartLiving\FYPSmartLivingcovid19\bin\Debug\netcoreapp2.1\smartLiving.pdb
 E:\GIT\smartLiving\FYPSmartLivingcovid19\obj\Debug\netcoreapp2.1\smartLiving.csprojAssemblyReference.cache
-E:\GIT\smartLiving\FYPSmartLivingcovid19\obj\Debug\netcoreapp2.1\smartLiving.csproj.CoreCompileInputs.cache
 E:\GIT\smartLiving\FYPSmartLivingcovid19\obj\Debug\netcoreapp2.1\smartLiving.RazorAssemblyInfo.cache
 E:\GIT\smartLiving\FYPSmartLivingcovid19\obj\Debug\netcoreapp2.1\smartLiving.RazorAssemblyInfo.cs
 E:\GIT\smartLiving\FYPSmartLivingcovid19\obj\Debug\netcoreapp2.1\smartLiving.AssemblyInfoInputs.cache
@@ -26,3 +25,4 @@ E:\GIT\smartLiving\FYPSmartLivingcovid19\obj\Debug\netcoreapp2.1\smartLiving.Ass
 E:\GIT\smartLiving\FYPSmartLivingcovid19\obj\Debug\netcoreapp2.1\smartLiving.RazorTargetAssemblyInfo.cache
 E:\GIT\smartLiving\FYPSmartLivingcovid19\obj\Debug\netcoreapp2.1\smartLiving.dll
 E:\GIT\smartLiving\FYPSmartLivingcovid19\obj\Debug\netcoreapp2.1\smartLiving.pdb
+E:\GIT\smartLiving\FYPSmartLivingcovid19\obj\Debug\netcoreapp2.1\smartLiving.csproj.CoreCompileInputs.cache

@@ -45,7 +45,7 @@ namespace smartLiving.Repostries
         public async Task<object> retrieve(string pId)
         {
             var society = Builders<Society>.Filter.Eq("societyId", pId);
-            return await collection.Find(society).ToListAsync();
+            return await collection.Find(society).SingleAsync();
 
             
         }

@@ -8,9 +8,8 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
-using smartLiving.Repositires;
+
+using smartLiving;
 using smartLiving.Repostries;
 
 namespace TestProjectProperty
@@ -41,7 +40,7 @@ namespace TestProjectProperty
             services.AddScoped<MaintainanceTaskResponseRepositry>();
             services.AddScoped<MarriageHallReservationRepositry>();
             services.AddScoped<ResidentRepositry>();
-            
+            services.AddScoped<Notification>();
             services.AddScoped<TransportRepositry>();
             services.AddScoped<ManageBillRepositry>();
         }

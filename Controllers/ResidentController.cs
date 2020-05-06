@@ -29,10 +29,11 @@ namespace smartLiving.Controllers
 
         }
         //http://localhost:5000/api/Resident/1       
-        [HttpGet("{id}", Name = "ResidentProfile")]
-        public async Task<string> getResidentData(string[] credentials)
+        [HttpGet("{data}", Name = "ResidentProfile")]
+        public async Task<string> getResidentData(string data)
 
         {
+            string[]credentials = data.Split(","); 
             string email = "", sId="", pId="";
             if (credentials != null)
             {                             
@@ -46,6 +47,12 @@ namespace smartLiving.Controllers
                 if (ResidentData == null)
                     return null;
                 return JsonConvert.SerializeObject(ResidentData);
+            }
+            if(!sId.Equals("") && !pId.Equals("") && !email.Equals("")  ){
+                    var existResident = await context.retrieveBySidPidEmail(sId,pId,email);
+            if (existResident == null)
+                return null;
+            return JsonConvert.SerializeObject(existResident);        
             }
             var ResidentDataByIds = await context.retrieveBySidPid(sId,pId);
             if (ResidentDataByIds == null)
