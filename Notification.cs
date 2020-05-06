@@ -3,12 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using MailKit.Net.Smtp;
+
+using MailKit;
+
 using MimeKit;
 namespace smartLiving
 {
     public class Notification
     {
         public Notification() { }
+
         private string emailSubject,receiverEmail,emailBody;
 
         public string EmailSubject { get => emailSubject; set => emailSubject = value; }
@@ -40,6 +44,8 @@ namespace smartLiving
 
                 return false;
             }
+
         }
+
     }
 }
