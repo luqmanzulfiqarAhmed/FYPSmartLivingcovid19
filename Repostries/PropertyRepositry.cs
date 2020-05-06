@@ -52,7 +52,7 @@ namespace smartLiving.Repostries
             var Property = Builders<Property>.Filter.Eq("propertyId", pId);
             var society = Builders<Property>.Filter.Eq("societyId", sId);
             var combineFilters = Builders<Property>.Filter.And(society,Property);            
-            return await collection.Find(Property).ToListAsync();
+            return await collection.Find(Property).SingleAsync();
         }
 
         public async Task<object> retrieveAll(string societyId)
