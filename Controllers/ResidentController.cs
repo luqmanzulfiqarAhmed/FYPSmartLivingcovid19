@@ -81,12 +81,12 @@ namespace smartLiving.Controllers
 
 
         [HttpPut]
-        public async Task<ActionResult> updateResidentProfile([FromBody]Resident Resident)
+        public async Task<bool> updateResidentProfile([FromBody]Resident Resident)
         {
 
 
-            await context.update(Resident.residentEmaill, Resident);
-            return Ok(Resident);
+            bool flag = await context.update(Resident.residentEmaill, Resident);
+            return flag;
         }
     }
 }

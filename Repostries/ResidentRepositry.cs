@@ -73,10 +73,16 @@ namespace smartLiving.Repostries
             return await collection.Find(Resident).ToListAsync();
         }
 
-        public async Task<object> update(string id, object Resident)
+        public async Task<bool> update(string id, object Resident)
         {
+            try{
             await collection.ReplaceOneAsync(ZZ => ZZ.residentEmaill == id, (Resident)Resident);
             return true;
+            }catch(Exception ex){
+                   return false; 
+
+            }
+            
         }
     
     }
