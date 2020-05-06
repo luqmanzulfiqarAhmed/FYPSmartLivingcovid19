@@ -25,7 +25,7 @@ namespace smartLiving.Controllers
         {
 
             var ResidentData = await context.retriveAllData();
-            return JsonConvert.SerializeObject(ResidentData);
+            return JsonConvert.SerializeObject(ResidentData) +"success";
 
         }
         //http://localhost:5000/api/Resident/1       
