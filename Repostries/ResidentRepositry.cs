@@ -67,7 +67,7 @@ namespace smartLiving.Repostries
             var combineFilters = Builders<Resident>.Filter.And(bySId, byPId,Resident);
             return await collection.Find(combineFilters).SingleAsync();
         }
-        public async Task<object> retrieveAll(string societyId)
+        public async Task<object> retrieveBySid(string societyId)
         {
             var Resident = Builders<Resident>.Filter.Eq("societyId", societyId);
             return await collection.Find(Resident).ToListAsync();

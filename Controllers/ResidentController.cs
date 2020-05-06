@@ -33,6 +33,7 @@ namespace smartLiving.Controllers
         public async Task<string> getResidentData(string data)
 
         {
+            
             string[]credentials = data.Split(","); 
             string email = "", sId="", pId="";
             if (credentials != null)
@@ -41,23 +42,34 @@ namespace smartLiving.Controllers
                 pId = credentials[1];                
                 email = credentials[2];
             }
-            if (!email.Equals(""))
+            if (!sId.Equals(" "))
+            {
+                var ResidentDataBySid = await context.retrieveBySid(sId);
+                if (ResidentDataBySid == null)
+                    return null;
+                return JsonConvert.SerializeObject(ResidentDataBySid);
+            }
+            if (!email.Equals(" "))
             {
                 var ResidentData = await context.retrieveByEmail(email);
                 if (ResidentData == null)
                     return null;
                 return JsonConvert.SerializeObject(ResidentData);
             }
-            if(!sId.Equals("") && !pId.Equals("") && !email.Equals("")  ){
+            if(!sId.Equals(" ") && !pId.Equals(" ") && !email.Equals(" ")  ){
                     var existResident = await context.retrieveBySidPidEmail(sId,pId,email);
             if (existResident == null)
                 return null;
             return JsonConvert.SerializeObject(existResident);        
             }
+            if(!sId.Equals(" ") && !pId.Equals(" ")) {
             var ResidentDataByIds = await context.retrieveBySidPid(sId,pId);
             if (ResidentDataByIds == null)
                 return null;
             return JsonConvert.SerializeObject(ResidentDataByIds);
+            }
+            return "no response";
+            
         }
 
         [HttpPost(Name = "ResidentRegister")]
