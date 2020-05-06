@@ -29,9 +29,15 @@ namespace smartLiving.Controllers
         }
         //http://localhost:5000/api/Property/1       
         [HttpGet("{id}", Name = "PropertyProfile")]
-        public async Task<string> getPropertyData(string id)
+        public async Task<string> getPropertyData(string[] id)
         {
-            var PropertyData = await context.retrieve(id);
+            if(id[1] == null){
+                    
+            var propertiesData = await context.retriveAllData();
+            return JsonConvert.SerializeObject(propertiesData);
+
+            }
+            var PropertyData = await context.retrieve(id[0],id[1]);
             if (PropertyData == null)
                 return null;
             return JsonConvert.SerializeObject(PropertyData);
