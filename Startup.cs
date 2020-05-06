@@ -12,7 +12,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using smartLiving.Repositires;
 using smartLiving.Repostries;
-
+using smartLiving;
 namespace TestProjectProperty
 {
     public class Startup
@@ -44,6 +44,8 @@ namespace TestProjectProperty
             
             services.AddScoped<TransportRepositry>();
             services.AddScoped<ManageBillRepositry>();
+            services.AddScoped<Notification>();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

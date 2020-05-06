@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using smartLiving.Models;
 using smartLiving.Repostries;
-
+using smartLiving;
 namespace smartLiving.Controllers
 {
     [Route("api/[controller]")]
@@ -64,6 +64,7 @@ namespace smartLiving.Controllers
             ResidentData = JsonConvert.SerializeObject(ResidentData);
             if (ResidentData.ToString() == "[]")
             {
+                
                 await context.insert(Resident);
 
                 return "true";
