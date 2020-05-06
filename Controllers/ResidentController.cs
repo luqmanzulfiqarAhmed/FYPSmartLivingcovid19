@@ -71,7 +71,16 @@ namespace smartLiving.Controllers
             return "no response";
             
         }
+        [HttpGet("{data},{temp}", Name = "ResidentProfile")]
+        public async Task<string> getResidentDataByWeb(string data,string temp)
 
+        {
+                var ResidentDataBySid = await context.retrieveBySid(data);
+                if (ResidentDataBySid == null)
+                    return null + data;
+                return JsonConvert.SerializeObject(ResidentDataBySid);
+
+        }
         [HttpPost(Name = "ResidentRegister")]
         public async Task<bool> registerResident([FromBody]Resident Resident)
 
