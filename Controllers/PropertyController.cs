@@ -28,12 +28,14 @@ namespace smartLiving.Controllers
 
         }
         //http://localhost:5000/api/Property/1       
-        [HttpGet("{id}", Name = "PropertyProfile")]
-        public async Task<string> getPropertyData(string[] id)
+        [HttpGet("{data}", Name = "PropertyProfile")]
+        public async Task<string> getPropertyData(  string data)
         {
-            if(id[1] == null){
+                string []id=data.Split(",");
+            if(id !=null){    
+            if(id[1].Equals("")){//get all properties of a scoiety
                     
-            var propertiesData = await context.retriveAllData();
+            var propertiesData = await context.retrieveAll(id[0]);
             return JsonConvert.SerializeObject(propertiesData);
 
             }
@@ -41,6 +43,8 @@ namespace smartLiving.Controllers
             if (PropertyData == null)
                 return null;
             return JsonConvert.SerializeObject(PropertyData);
+            }
+            return "adsda";
         }
 
         // [HttpPost(Name = "PropertyRegister")]
