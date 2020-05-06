@@ -64,7 +64,7 @@ namespace smartLiving.Controllers
         public async Task<bool> registerResident([FromBody]Resident Resident)
 
         {
-            var ResidentData = await context.retrieveByEmail(Resident.residentEmaill);
+            var ResidentData = await context.retrieveList(Resident.residentEmaill);
 
 
             ResidentData = JsonConvert.SerializeObject(ResidentData);
@@ -80,8 +80,7 @@ namespace smartLiving.Controllers
 
 
 
-        [HttpPut
-        ]
+        [HttpPut]
         public async Task<ActionResult> updateResidentProfile([FromBody]Resident Resident)
         {
 

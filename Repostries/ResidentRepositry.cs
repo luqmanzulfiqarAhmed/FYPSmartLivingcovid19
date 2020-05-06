@@ -47,6 +47,11 @@ namespace smartLiving.Repostries
             var Resident = Builders<Resident>.Filter.Eq("residentEmaill", email);
             return await collection.Find(Resident).SingleAsync();
         }
+        public async Task<object> retrieveList(string email)
+        {
+            var Resident = Builders<Resident>.Filter.Eq("residentEmaill", email);
+            return await collection.Find(Resident).ToListAsync();
+        }
         public async Task<object> retrieveBySidPid(string pId,string sId)
         {
             var bySId = Builders<Resident>.Filter.Eq("societyId", sId);
