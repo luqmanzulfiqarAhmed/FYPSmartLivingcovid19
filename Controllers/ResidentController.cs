@@ -10,7 +10,7 @@ using smartLiving.Repostries;
 
 namespace smartLiving.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/Resident")]
     [ApiController]
     public class ResidentController : ControllerBase
     {
