@@ -29,10 +29,11 @@ namespace smartLiving.Controllers
 
         }
         //http://localhost:5000/api/Resident/1       
-        [HttpGet("{id}", Name = "ResidentProfile")]
-        public async Task<string> getResidentData(string[] credentials)
+        [HttpGet("{data}", Name = "ResidentProfile")]
+        public async Task<string> getResidentData(string data)
 
         {
+            string[]credentials = data.Split(","); 
             string email = "", sId="", pId="";
             if (credentials != null)
             {                             
