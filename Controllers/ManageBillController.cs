@@ -30,8 +30,8 @@ namespace smartLiving.Controllers
         }
 
         
-        [HttpGet("{id}", Name = "ResidentBill")]
-        public async Task<string> getResidentBill(string id)
+        [HttpGet("{sid}/{id}", Name = "ResidentBill")]
+        public async Task<string> getResidentBill(string sid,string id)
         {
 
             var billData = await context.retrieve(id);
