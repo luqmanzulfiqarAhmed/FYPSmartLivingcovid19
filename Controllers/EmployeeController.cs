@@ -20,7 +20,7 @@ namespace smartLiving.Controllers
         {
             context = EmployeeRepositry;
         }
-        [HttpGet]
+        [HttpGet(Name = "getAllEmployeesData")]
         public async Task<string> getAllEmployeesData()
         {
 
