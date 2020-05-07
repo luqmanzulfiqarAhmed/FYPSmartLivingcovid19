@@ -32,7 +32,7 @@ namespace smartLiving.Controllers
         [HttpGet("{societyId}", Name = "EmployeeProfile")]
         public async Task<string> getEmployeeData(string societyId)
         {
-            var EmployeeData = await context.retrieve(societyId);
+            var EmployeeData = await context.retrieveAll(societyId);
             if (EmployeeData == null)
                 return null;
             return JsonConvert.SerializeObject(EmployeeData);
