@@ -28,6 +28,9 @@ namespace smartLiving.Models
         public string employeeImage;//data type will be change
         [BsonElement("employeeDepartment")]
         public string employeeDepartment;
+
+        [BsonElement("employeeDesignation")]
+        public string employeeDesignation;
         [BsonElement("isAvailable")]
         public Boolean isAvailable=false;
         [BsonElement("employeeRateing")]
