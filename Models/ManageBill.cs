@@ -31,6 +31,8 @@ namespace smartLiving.Models
             public string unitPrice { get; set; }
         [BsonElement("billAmount")]
             public string billAmount { get; set; }
+            [BsonElement("billStatus")]
+            public string billStatus { get; set; }
         public ManageBill()
         {
         }

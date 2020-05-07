@@ -72,7 +72,11 @@ namespace smartLiving.Repostries
             var Resident = Builders<Resident>.Filter.Eq("societyId", societyId);
             return await collection.Find(Resident).ToListAsync();
         }
-
+public async Task<object> retrieveAll(string societyId)
+        {
+            var Society = Builders<Resident>.Filter.Eq("societyId", societyId);
+            return await collection.Find(Society).ToListAsync();
+        }
         public async Task<bool> update(string id, object Resident)
         {
             try{

@@ -50,11 +50,7 @@ namespace smartLiving.Repostries
             
         }
 
-        public async Task<object> retrieveAll(string societyId)
-        {
-            var Society = Builders<Society>.Filter.Eq("societyId", societyId);
-            return await collection.Find(Society).ToListAsync();
-        }
+        
 
         public async Task<object> update(string id, object Society)
         {

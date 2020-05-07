@@ -9,7 +9,7 @@ namespace smartLiving.Models
     [BsonIgnoreExtraElements]
     public class Resident
     {
-        public Resident() { }
+        
 
         [BsonElement("societyId")]
         public string societyId;
@@ -33,6 +33,7 @@ namespace smartLiving.Models
         public string residentCnic;
         [BsonElement("residentType")]
         public string residentType;//commercial or house
+        public Resident() { }
 
     }
 }

@@ -25,7 +25,7 @@ namespace smartLiving.Controllers
         {
 
             var ResidentData = await context.retriveAllData();
-            return JsonConvert.SerializeObject(ResidentData) ;
+            return JsonConvert.SerializeObject(ResidentData)+"here" ;
 
         }
         //http://localhost:5000/api/Resident/1       
@@ -71,14 +71,14 @@ namespace smartLiving.Controllers
             return "no response";
             
         }
-        [HttpGet("{data}/{temp}", Name = "getResidentDataByWeb")]
+        [HttpGet("{sid}/{temp}", Name = "getResidentDataByWeb")]
         public async Task<string> getResidentDataByWeb(string sid,string temp)
 
         {
                 var ResidentDataBySid = await context.retrieveBySid(sid);
                 if (ResidentDataBySid == null)
                     return null + sid;
-                return JsonConvert.SerializeObject(ResidentDataBySid);
+                return JsonConvert.SerializeObject(ResidentDataBySid) + "2";
 
         }
         [HttpPost(Name = "ResidentRegister")]
