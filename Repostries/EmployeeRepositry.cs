@@ -21,7 +21,7 @@ namespace smartLiving.Repostries
         }
         private readonly IMongoCollection<Employee> collection;
 
-        public async Task<object> retriveAllData()
+        public async Task<Object> retriveAllData()
         {
             return await collection.Find(x => true).ToListAsync();
         }

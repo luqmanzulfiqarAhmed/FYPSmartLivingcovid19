@@ -10,6 +10,7 @@ namespace smartLiving.Models
     public class Employee
     {
         public Employee() { }
+        
         [BsonElement("societyId")]
         public string societyId;
         [BsonElement("employeeEmail")]
