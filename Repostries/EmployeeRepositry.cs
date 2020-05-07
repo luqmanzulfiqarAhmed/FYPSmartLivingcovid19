@@ -48,6 +48,14 @@ namespace smartLiving.Repostries
             return await collection.Find(Employee).ToListAsync();
         }
 
+        public async Task<object> retrieveByDesignation(string employeeEmail,string sId)
+        {
+            var employee = Builders<Employee>.Filter.Eq("employeeEmail", employeeEmail);
+            var bysId = Builders<Employee>.Filter.Eq("propertyId", sId);
+            var combineFilters = Builders<Employee>.Filter.And(employee, bysId);
+            return await collection.Find(combineFilters).ToListAsync();
+        }
+
         public async Task<object> retrieveAll(string societyId)
         {
             var Employee = Builders<Employee>.Filter.Eq("societyId", societyId);

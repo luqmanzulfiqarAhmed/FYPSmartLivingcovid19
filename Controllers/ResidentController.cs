@@ -72,12 +72,12 @@ namespace smartLiving.Controllers
             
         }
         [HttpGet("{data}/{temp}", Name = "getResidentDataByWeb")]
-        public async Task<string> getResidentDataByWeb(string data,string temp)
+        public async Task<string> getResidentDataByWeb(string sid,string temp)
 
         {
-                var ResidentDataBySid = await context.retrieveBySid(data);
+                var ResidentDataBySid = await context.retrieveBySid(sid);
                 if (ResidentDataBySid == null)
-                    return null + data;
+                    return null + sid;
                 return JsonConvert.SerializeObject(ResidentDataBySid);
 
         }
