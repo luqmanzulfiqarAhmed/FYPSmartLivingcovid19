@@ -21,7 +21,7 @@ namespace smartLiving.Controllers
             context = billRepositry;
         }
 
-        [Route("[action]/{societyId}")]
+        
         [HttpGet("{societyId}", Name = "AllHouseResidentBillData")]
         public async Task<string> getAllHouseResidentBillData(string societyId)
         {
@@ -29,7 +29,7 @@ namespace smartLiving.Controllers
             return JsonConvert.SerializeObject(billData);
         }
 
-        [Route("[action]/{id}")]
+        
         [HttpGet("{id}", Name = "ResidentBill")]
         public async Task<string> getResidentBill(string id)
         {
@@ -40,16 +40,15 @@ namespace smartLiving.Controllers
             return JsonConvert.SerializeObject(billData);
         }
 
-        [HttpPost("{residentId,bill}", Name = "submitBill")]
-        public async Task<ActionResult<ManageBill>> submitBill(string residentId, ManageBill bill)
+        [HttpPost( Name = "submitBill")]
+        public async Task<string> submitBill( ManageBill bill)
         {
-            if (residentId == bill.residentEmail)
-            {
+            
                 //here first i will call 'calculateBill' function using bill object
-                await context.insert(bill);
-                return CreatedAtAction("submitBill", new ManageBill { billId = bill.billId }, bill);//just telling that this HouseResident is registered with this id
-            }
-            return BadRequest();
+                string msg = await context.insert(bill);
+                return msg;
+            
+            
         }
  
         [HttpPut( Name = "updateBillManageBill")]

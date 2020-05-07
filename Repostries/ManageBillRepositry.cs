@@ -31,23 +31,27 @@ namespace smartLiving.Repostries
             return true;
         }
 
-        public async Task<object> insert(object admin)
+        public async Task<string> insert(object admin)
         {
+            try{
             await manageBill.InsertOneAsync((ManageBill)admin);
-
-            return true;
+            return "true";
+            }catch(Exception ex){
+                    string ax = ex.Message;
+                return ax;
+            }
         }
 
         public async Task<object> retrieve(string id)
         {
-            var admin = Builders<ManageBill>.Filter.Eq("Id", id);
+            var admin = Builders<ManageBill>.Filter.Eq("billId", id);
 
             return await manageBill.Find(admin).ToListAsync();
         }
 
         public async Task<object> retrieveAll(string societyId)
         {
-            var admin = Builders<ManageBill>.Filter.Eq("HousingSocietyID", societyId);
+            var admin = Builders<ManageBill>.Filter.Eq("societyId", societyId);
             return await manageBill.Find(admin).ToListAsync();
         }
 
