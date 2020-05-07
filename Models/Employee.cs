@@ -9,7 +9,7 @@ namespace smartLiving.Models
     [BsonIgnoreExtraElements]
     public class Employee
     {
-        public Employee() { }
+        
         
         [BsonElement("societyId")]
         public string societyId;
@@ -36,6 +36,6 @@ namespace smartLiving.Models
         public Boolean isAvailable=false;
         [BsonElement("employeeRateing")]
         public string employeeRateing;
-        
+        public Employee() { }
     }
 }
