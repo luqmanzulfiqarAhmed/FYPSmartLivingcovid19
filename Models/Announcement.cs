@@ -25,10 +25,11 @@ namespace smartLiving.Models
         public string name { get; set; }
 
         [BsonElement("submissionDateTime")]
-        public string submissionDateTime { get; set; }
+        public DateTime  submissionDateTime { get; set; }
 
         [BsonElement("expireDate")]
-        public string expireDate { get; set; }
+        public DateTime  expireDate { get; set; }
+
 
 
         [BsonElement("IPAddress")]
