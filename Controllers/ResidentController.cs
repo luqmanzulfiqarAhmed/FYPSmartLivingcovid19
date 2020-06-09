@@ -25,11 +25,11 @@ namespace smartLiving.Controllers
         {
 
             var ResidentData = await context.retriveAllData();
-            return JsonConvert.SerializeObject(ResidentData)+"here" ;
+            return JsonConvert.SerializeObject(ResidentData) ;
 
         }
         //http://localhost:5000/api/Resident/1       
-        [HttpGet("{data}", Name = "ResidentProfile")]
+        [HttpGet("{data}", Name = "getResidentData")]
         public async Task<string> getResidentData(string data)
 
         {
