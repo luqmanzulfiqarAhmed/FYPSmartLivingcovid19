@@ -10,6 +10,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
 using smartLiving;
+
 using smartLiving.Repostries;
 
 namespace TestProjectProperty
@@ -30,7 +31,7 @@ namespace TestProjectProperty
             services.AddScoped<PropertyRepositry>();
             services.AddScoped<SocietyRepositry>();
             services.AddScoped<AdminRepositry>();
-            
+            services.AddScoped<VehicleRepositry>();
             services.AddScoped<AnnouncementRepositry>();
             services.AddScoped<ComplainRepositry>();
             services.AddScoped<EmergencyTaskResponseRepositry>();
