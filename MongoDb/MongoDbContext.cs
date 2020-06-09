@@ -26,6 +26,7 @@ MongoClientSettings settings = MongoClientSettings.FromUrl(
 settings.SslSettings = 
   new SslSettings() { EnabledSslProtocols = SslProtocols.Tls12 };
 var mongoClient = new MongoClient(settings);
+database = mongoClient.GetDatabase("HousingSocietyAppBuilder");
         }
         public static MongoDbContext getMongoDbContext(IConfiguration config)
         {
