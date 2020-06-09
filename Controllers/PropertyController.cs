@@ -64,10 +64,10 @@ namespace smartLiving.Controllers
 
         //     return PropertyData.ToString();
         // }
-        [HttpPost(Name = "PropertyRegisterAll")]
-        public async Task<bool> registerPropertiesAll([FromBody]Property[] Property){
+        [HttpPost(Name = "registerPropertiesAll")]
+        public async Task<string> registerPropertiesAll([FromBody]Property[] Property){
 
-                bool flag =await context.insert(Property);
+                string flag =await context.insert(Property);
                 return flag;
                 
         }

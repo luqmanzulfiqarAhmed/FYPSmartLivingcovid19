@@ -21,9 +21,10 @@ namespace smartLiving.Repostries
         }
         private readonly IMongoCollection<Transport> collection;
 
-        public async Task<object> retriveAllData()
+        public async Task<object> retriveAllData(string societyId)
         {
-            return await collection.Find(x => true).ToListAsync();
+            var Transport = Builders<Transport>.Filter.Eq("societyId", societyId);
+            return await collection.Find(Transport).ToListAsync();
         }
 
         //not defined yet because we will not delete in server we only disable particular account

@@ -31,8 +31,8 @@ namespace smartLiving.Controllers
         //     return JsonConvert.SerializeObject(vehichleData);
         // }
 
-        [HttpGet("{id}", Name = "SocietyProfile")]
-        public async Task<string> getSocietyData(string id)
+        [HttpGet("{id}", Name = "getAllVehichleData")]
+        public async Task<string> getAllVehichleData(string id)
         {
             var SocietyData = await context.retrieve(id);
             if (SocietyData == null)
@@ -40,7 +40,7 @@ namespace smartLiving.Controllers
             return JsonConvert.SerializeObject(SocietyData);
         }
          //http://localhost:5000/api/vehichle/1       
-        [HttpGet("{id}/{sID}", Name = "getvehichleData")]
+        [HttpGet("{id}/{sID}", Name = "getVehichleData")]
         public async Task<string> getvehichleData(string id,string sID)
         {
             var adminData = await context.retrieve(id);

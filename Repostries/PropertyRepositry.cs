@@ -30,17 +30,17 @@ namespace smartLiving.Repostries
             return true;
         }
 
-        public async Task<bool> insert(Property[] properties)
+        public async Task<string> insert(Property[] properties)
         {
             
             
             
             try{
             await collection.InsertManyAsync(properties);
-            return true;
+            return "true";
             }
             catch(MongoException ex){
-            return false;
+            return ex.Message;
 
             }
             
