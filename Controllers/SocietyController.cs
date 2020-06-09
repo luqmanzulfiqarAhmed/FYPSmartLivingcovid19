@@ -43,7 +43,7 @@ namespace smartLiving.Controllers
         public async Task<String> registerSociety([FromBody]Society Society)
 
         {
-            var SocietyData = await context.retrieve(Society.societyId);
+            var SocietyData = await context.retrieveAllById(Society.societyId);
 
 
             SocietyData = JsonConvert.SerializeObject(SocietyData);
