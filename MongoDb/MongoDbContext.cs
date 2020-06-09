@@ -18,17 +18,14 @@ namespace smartLiving.MongoDb
 
             // var client = new MongoClient("mongodb://localhost:27017");
             // database = client.GetDatabase("HousingSocietyAppBuilder");
-
-            string connectionString =
-  @"mongodb://smartlivingdb:zyCRVgRxGCJ61dHaQ3VDBqwAt3MGjSb2SbbECCt9wroIX26Ne1m9lEj6Uk2B65nxYVzvEQjfgmlOasG0ZfcsuA==@smartlivingdb.documents.azure.com:10255/?ssl=true&replicaSet=globaldb";
-            MongoClientSettings settings = MongoClientSettings.FromUrl(
-              new MongoUrl(connectionString)
-            );
-            settings.SslSettings =
-              new SslSettings() { EnabledSslProtocols = SslProtocols.Tls12 };
-            var mongoClient = new MongoClient(settings);
-            database = mongoClient.GetDatabase("HousingSocietyAppBuilder");
-
+string connectionString = 
+  @"mongodb://luqman:CDH0W3E6ZEpOyoCxvuo0LTjVKuKp8bekWCqQKMirwKc9ND7zhXBlmp5Ixxmia7gU05u7hhuKHu3hDiT7k4gvtA==@luqman.mongo.cosmos.azure.com:10255/?ssl=true&replicaSet=globaldb&maxIdleTimeMS=120000&appName=@luqman@";
+MongoClientSettings settings = MongoClientSettings.FromUrl(
+  new MongoUrl(connectionString)
+);
+settings.SslSettings = 
+  new SslSettings() { EnabledSslProtocols = SslProtocols.Tls12 };
+var mongoClient = new MongoClient(settings);
         }
         public static MongoDbContext getMongoDbContext(IConfiguration config)
         {

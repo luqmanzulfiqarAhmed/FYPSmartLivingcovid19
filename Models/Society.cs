@@ -25,7 +25,7 @@ namespace smartLiving.Models
         [BsonElement("societyImage")]
         public string societyImage;//data type will be change
         [BsonElement("boundaries")]
-        public List<String> boundaries;
+        public List<Boundaries> boundaries;
         [BsonElement("services")]
         public Service services;
             
