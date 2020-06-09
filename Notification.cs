@@ -19,7 +19,7 @@ namespace smartLiving
         public string ReceiverEmail { get => receiverEmail; set => receiverEmail = value; }
         public string EmailBody { get => emailBody; set => emailBody = value; }
 
-        public async Task<bool> sendEmail(){
+        public async Task<string> sendEmail(){
             try
             {
                 var message = new MimeMessage();
@@ -38,11 +38,11 @@ namespace smartLiving
                     await client.DisconnectAsync(true);
                     //                client.ServerCertificateValidationCallback=();
                 };
-                return true;
+                return "true";
             }
             catch (Exception ex) {
 
-                return false;
+                return "false" + ex.Message;
             }
 
         }

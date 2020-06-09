@@ -57,7 +57,7 @@ namespace smartLiving.Repostries
             var bySId = Builders<Resident>.Filter.Eq("societyId", sId);
             var byPId = Builders<Resident>.Filter.Eq("propertyId", pId);
             var combineFilters = Builders<Resident>.Filter.And(bySId, byPId);
-            return await collection.Find(combineFilters).SingleAsync();
+            return await collection.Find(combineFilters).FirstOrDefaultAsync();
         }
         public async Task<object> retrieveBySidPidEmail(string pId,string sId,string email)
         {
@@ -65,7 +65,8 @@ namespace smartLiving.Repostries
             var byPId = Builders<Resident>.Filter.Eq("propertyId", pId);
             var Resident = Builders<Resident>.Filter.Eq("residentEmaill", email);
             var combineFilters = Builders<Resident>.Filter.And(bySId, byPId,Resident);
-            return await collection.Find(combineFilters).SingleAsync();
+            var result = await collection.Find(combineFilters).FirstOrDefaultAsync();            
+            return result;
         }
         public async Task<object> retrieveBySid(string societyId)
         {

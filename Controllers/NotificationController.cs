@@ -15,9 +15,9 @@ namespace smartLiving.Controllers
 
         // POST: api/Notification
         [HttpPost]
-        public async Task<bool> Post([FromBody] Notification notification)
+        public async Task<string> Post([FromBody] Notification notification)
         {
-            bool flag= await notification.sendEmail();
+            string flag= await notification.sendEmail();
             return flag;
         }
 
