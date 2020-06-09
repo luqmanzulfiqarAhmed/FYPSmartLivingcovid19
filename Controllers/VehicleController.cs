@@ -31,19 +31,19 @@ namespace smartLiving.Controllers
         //     return JsonConvert.SerializeObject(vehichleData);
         // }
 
-        [HttpGet("{id}", Name = "getAllVehichleData")]
-        public async Task<string> getAllVehichleData(string id)
+        [HttpGet("{societyId}", Name = "getAllVehichleData")]
+        public async Task<string> getAllVehichleData(string societyId)
         {
-            var SocietyData = await context.retrieve(id);
+            var SocietyData = await context.retrieve(societyId);
             if (SocietyData == null)
                 return null;
             return JsonConvert.SerializeObject(SocietyData);
         }
          //http://localhost:5000/api/vehichle/1       
-        [HttpGet("{id}/{sID}", Name = "getVehichleData")]
-        public async Task<string> getvehichleData(string id,string sID)
+        [HttpGet("{vId}/{sId}", Name = "getVehichleData")]
+        public async Task<string> getvehichleData(string vId,string sId)
         {
-            var adminData = await context.retrieve(id);
+            var adminData = await context.retrieveAll(vId,sId);
             if (adminData == null)
                 return null;
             return JsonConvert.SerializeObject(adminData);        

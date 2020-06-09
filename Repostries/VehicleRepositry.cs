@@ -40,16 +40,19 @@ namespace smartLiving.Repostries
 
         }
 
-        public async Task<object> retrieve(string vehicleId)
+        public async Task<object> retrieve(string societyId)
         {
-            var vehicle = Builders<Vehicle>.Filter.Eq("vehicleId", vehicleId);            
+            var vehicle = Builders<Vehicle>.Filter.Eq("societyId", societyId);            
             return  await collection.Find(vehicle).ToListAsync();
         }
 
-        public async Task<object> retrieveAll(string societyId)
+        public async Task<object> retrieveAll(string vehicleId, string societyId)
         {
             var vehicle = Builders<Vehicle>.Filter.Eq("societyId", societyId);
-            return await collection.Find(vehicle).ToListAsync();
+            var society = Builders<Vehicle>.Filter.Eq("vehicleId", vehicleId);
+            var combineFilters = Builders<Vehicle>.Filter.And(vehicle, society);
+            return await collection.Find(combineFilters).SingleAsync();
+            
         }
 
         public async Task<object> update(string id, object vehicle)
