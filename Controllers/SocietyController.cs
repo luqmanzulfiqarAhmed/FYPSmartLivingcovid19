@@ -29,7 +29,7 @@ namespace smartLiving.Controllers
 
         }
         //http://localhost:5000/api/Society/1       
-        [HttpGet("{id}", Name = "SocietyProfile")]
+        [HttpGet("{id}", Name = "getSocietyData")]
         public async Task<string> getSocietyData(string id)
         {
             var SocietyData = await context.retrieve(id);

@@ -21,32 +21,32 @@ namespace smartLiving.Controllers
         {
             context = VehicleRepositry;
         }
-[HttpGet]
-        public async Task<string> get()
-        {
 
-            return "working";
-            
-        }
         
+        
+        // [HttpGet]
+        // public async Task<string> getTest(){
 
+        //     var vehichleData = await context.retrieveAll("SitaraSapna@123");
+        //     return JsonConvert.SerializeObject(vehichleData);
+        // }
 
-        [HttpGet("{societyId}", Name = "allVehicleProfile")]
-        public async Task<string> getAllVehiclesData(string societyId)
+        [HttpGet("{id}", Name = "SocietyProfile")]
+        public async Task<string> getSocietyData(string id)
         {
-
-            var VehicleData = await context.retrieveAll(societyId);
-            return JsonConvert.SerializeObject(VehicleData);
-            
-        }
-         
-        [HttpGet("{vid}", Name = "VehicleProfile")]
-        public async Task<string> getVehicleData(string vid)
-        {
-            var VehicleData = await context.retrieve(vid);
-            if (VehicleData == null)
+            var SocietyData = await context.retrieve(id);
+            if (SocietyData == null)
                 return null;
-            return JsonConvert.SerializeObject(VehicleData);        
+            return JsonConvert.SerializeObject(SocietyData);
+        }
+         //http://localhost:5000/api/vehichle/1       
+        [HttpGet("{id}/{sID}", Name = "getvehichleData")]
+        public async Task<string> getvehichleData(string id,string sID)
+        {
+            var adminData = await context.retrieve(id);
+            if (adminData == null)
+                return null;
+            return JsonConvert.SerializeObject(adminData);        
         }
 
         [HttpPost(Name = "VehicleRegister")]
