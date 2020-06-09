@@ -25,7 +25,7 @@ namespace smartLiving.Controllers
         {
 
             var ResidentData = await context.retriveAllData();
-            return JsonConvert.SerializeObject(ResidentData) ;
+            return JsonConvert.SerializeObject(ResidentData)+"in all" ;
 
         }
         //http://localhost:5000/api/Resident/1       
@@ -45,8 +45,8 @@ namespace smartLiving.Controllers
             if(!sId.Equals("") && !pId.Equals("") && !email.Equals("")  ){
                     var existResident = await context.retrieveBySidPidEmail(sId,pId,email);
             if (existResident == null)
-                return null;
-            return JsonConvert.SerializeObject(existResident);        
+                return null + "here in sid";
+            return JsonConvert.SerializeObject(existResident) ;        
             }
             if (!sId.Equals(""))
             {
@@ -59,13 +59,13 @@ namespace smartLiving.Controllers
             {
                 var ResidentData = await context.retrieveByEmail(email);
                 if (ResidentData == null)
-                    return null;
+                    return null + email;
                 return JsonConvert.SerializeObject(ResidentData);
             }            
             if(!sId.Equals("") && !pId.Equals("")) {
             var ResidentDataByIds = await context.retrieveBySidPid(sId,pId);
             if (ResidentDataByIds == null)
-                return null;
+                return null + sId + pId;
             return JsonConvert.SerializeObject(ResidentDataByIds);
             }
             return "no response";

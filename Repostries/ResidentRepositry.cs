@@ -59,7 +59,7 @@ namespace smartLiving.Repostries
             var combineFilters = Builders<Resident>.Filter.And(bySId, byPId);
             return await collection.Find(combineFilters).FirstOrDefaultAsync();
         }
-        public async Task<object> retrieveBySidPidEmail(string pId,string sId,string email)
+        public async Task<object> retrieveBySidPidEmail(string sId,string pId,string email)
         {
             var bySId = Builders<Resident>.Filter.Eq("societyId", sId);
             var byPId = Builders<Resident>.Filter.Eq("propertyId", pId);
