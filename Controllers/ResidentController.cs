@@ -45,7 +45,7 @@ namespace smartLiving.Controllers
             if(!sId.Equals("") && !pId.Equals("") && !email.Equals("")  ){
                     var existResident = await context.retrieveBySidPidEmail(sId,pId,email);
             if (existResident == null)
-                return null + "here in sid";
+                return null ;
             return JsonConvert.SerializeObject(existResident) ;        
             }
             if (!sId.Equals(""))
@@ -78,7 +78,7 @@ namespace smartLiving.Controllers
                 var ResidentDataBySid = await context.retrieveBySid(sid);
                 if (ResidentDataBySid == null)
                     return null + sid;
-                return JsonConvert.SerializeObject(ResidentDataBySid) + "2";
+                return JsonConvert.SerializeObject(ResidentDataBySid) ;
 
         }
         [HttpPost(Name = "ResidentRegister")]
