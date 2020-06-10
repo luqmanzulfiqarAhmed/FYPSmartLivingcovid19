@@ -30,12 +30,28 @@ namespace smartLiving.Controllers
         }
         //http://localhost:5000/api/Complain/1       
         [HttpGet("{id}", Name = "ComplainProfile")]
-        public async Task<string> getComplainData(string societyId)
+        public async Task<string> getComplainData(string data)
         {
-            var ComplainData = await context.retrieve(societyId);
-            if (ComplainData == null)
-                return null;
+            string[]credentials = data.Split(","); 
+            string email = "", sId="";
+            if (credentials != null)
+            {                             
+                sId = credentials[0];                                
+                email = credentials[1];
+            }
+            if(sId != "" ){
+                var ComplainData = await context.retrieveAll(sId);
+                if (ComplainData == null)
+                    return null;
             return JsonConvert.SerializeObject(ComplainData);
+            }
+            if(email != "" ){
+                var ComplainData = await context.retrieve(sId);
+                if (ComplainData == null)
+                    return null;
+            return JsonConvert.SerializeObject(ComplainData);
+            }
+            return "No response";
         }
 
         [HttpPost(Name = "ComplainRegister")]

@@ -32,13 +32,13 @@ namespace smartLiving.Controllers
         public async Task<string> getPropertyData(  string data)
         {
                 string []id=data.Split(",");
-            if(id !=null){    
-            if(id[1].Equals("")){//get all properties of a scoiety
-                    
-            var propertiesData = await context.retrieveAll(id[0]);
-            return JsonConvert.SerializeObject(propertiesData);
-
-            }
+            if(id !=null){                 
+                if(id[0].Equals("")){//get all properties of a scoiety                    
+                    var propertiesData = await context.retrieveAll(id[0]);
+                    if(propertiesData == null)
+                        return null;                
+                    return JsonConvert.SerializeObject(propertiesData);
+            }              
             var PropertyData = await context.retrieve(id[0],id[1]);
             if (PropertyData == null)
                 return null;

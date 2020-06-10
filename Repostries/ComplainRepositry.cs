@@ -42,9 +42,9 @@ namespace smartLiving.Repostries
 
         }
 
-        public async Task<object> retrieve(string pId)
+        public async Task<object> retrieve(string email )
         {
-            var Complain = Builders<Complain>.Filter.Eq("complaintId", pId);
+            var Complain = Builders<Complain>.Filter.Eq("residentEmail", email);
             return await collection.Find(Complain).ToListAsync();
         }
 
@@ -56,8 +56,13 @@ namespace smartLiving.Repostries
 
         public async Task<object> update(string id, object Complain)
         {
+            try{
             await collection.ReplaceOneAsync(ZZ => ZZ.complaintId == id, (Complain)Complain);
             return true;
+            }
+            catch(Exception ex){
+            return ex.Message;
+            }
         }
 
     }
