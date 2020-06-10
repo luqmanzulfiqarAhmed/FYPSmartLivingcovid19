@@ -47,13 +47,14 @@ namespace smartLiving.Controllers
             return JsonConvert.SerializeObject(ComplainData);
             }
             if(sId != "" && email != ""  ){
+
                 var ComplainData = await context.retrieve(sId,email);
                 if (ComplainData == null)
                     return null;
             return JsonConvert.SerializeObject(ComplainData);
             }
         }
-            return "data is null";
+            return "data is null  ";
         }
 
         [HttpPost(Name = "ComplainRegister")]
