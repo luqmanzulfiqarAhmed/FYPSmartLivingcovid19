@@ -78,12 +78,12 @@ namespace smartLiving.Controllers
 
 
         [HttpPut]
-        public async Task<ActionResult> updateComplainProfile([FromBody]Complain Complain)
+        public async Task<Object> updateComplainProfile([FromBody]Complain Complain)
         {
 
 
-            await context.update(Complain.complaintId, Complain);
-            return Ok(Complain);
+            Object flag = await context.update(Complain.complaintId, Complain);
+            return flag;
         }
     }
 }
