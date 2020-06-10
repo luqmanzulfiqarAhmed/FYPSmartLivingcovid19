@@ -42,10 +42,13 @@ namespace smartLiving.Repostries
 
         }
 
-        public async Task<object> retrieve(string email )
+        public async Task<object> retrieve(string societyId,string email)
         {
-            var Complain = Builders<Complain>.Filter.Eq("residentEmail", email);
-            return await collection.Find(Complain).ToListAsync();
+            var email = Builders<Complain>.Filter.Eq("residentEmail", email);
+            var societyId = Builders<Complain>.Filter.Eq("societyId",societyId);
+            var combineFilters = Builders<Complain>.Filter.And(societyId, email);
+            return await collection.Find(combineFilters).ToListAsync();
+            
         }
 
         public async Task<object> retrieveAll(string societyId)

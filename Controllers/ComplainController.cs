@@ -46,8 +46,8 @@ namespace smartLiving.Controllers
                     return null;
             return JsonConvert.SerializeObject(ComplainData);
             }
-            if(email != "" ){
-                var ComplainData = await context.retrieve(sId);
+            if(sId != "" && email != ""  ){
+                var ComplainData = await context.retrieve(sId,email);
                 if (ComplainData == null)
                     return null;
             return JsonConvert.SerializeObject(ComplainData);
