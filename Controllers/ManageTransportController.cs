@@ -44,11 +44,12 @@ namespace smartLiving.Controllers
         }
 
         [HttpPost(Name = "uploadSchdule")]
-        public async Task<ActionResult<Transport>> uploadSchdule( [FromBody]Transport Transport)
+        public async Task<ActionResult<Object>> uploadSchdule( [FromBody]Transport Transport)
         {
             
-                await context.insert(Transport);
-                return CreatedAtAction("uploadSchdule", new Transport { transportId = Transport.transportId}, Transport);            
+                
+                Object var =await context.insert(Transport);
+                return Transport;
         }
 
         [HttpPut(Name = "updateSchdule")]

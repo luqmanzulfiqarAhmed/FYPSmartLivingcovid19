@@ -15,9 +15,9 @@ namespace smartLiving.Models
         [BsonElement("location")]
         public Location location;
         [BsonElement("arivalTime")]
-        public Location arivalTime;
+        public string arivalTime;
         [BsonElement("departureTime")]
-        public Location departureTime;
+        public string departureTime;
         public class Location {
             public Location() { }
             public string lat, lng;

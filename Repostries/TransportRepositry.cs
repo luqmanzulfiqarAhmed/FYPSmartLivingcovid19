@@ -34,12 +34,15 @@ namespace smartLiving.Repostries
             return true;
         }
 
-        public async Task<object> insert(object obj)
+        public async Task<object> insert(Transport transport)
         {
-            Transport Transport = (Transport)obj;
-
-            await collection.InsertOneAsync((Transport)Transport);
+            try{
+            await collection.InsertOneAsync(transport);
             return true;
+            }catch(Exception ex){
+
+                return ex.Message;
+            }
 
         }
 
