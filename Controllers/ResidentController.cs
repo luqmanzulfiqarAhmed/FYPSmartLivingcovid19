@@ -71,7 +71,7 @@ namespace smartLiving.Controllers
             return "no response";
             
         }
-        [HttpGet("{sid}/{temp}", Name = "getResidentDataByWeb")]
+        [HttpGet("{sid},{temp}", Name = "getResidentDataByWeb")]
         public async Task<string> getResidentDataByWeb(string sid,string temp)
 
         {
