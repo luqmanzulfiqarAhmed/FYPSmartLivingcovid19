@@ -15,7 +15,7 @@ namespace smartLiving.Models
         [BsonElement("routeName")]
         public string routeName;
         [BsonElement("busStops")]
-        public List<Stops> busStops;
+        public Stops[] busStops = new Stops[3];
 
     }
 }
