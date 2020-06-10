@@ -38,14 +38,14 @@ namespace smartLiving.Controllers
                     var propertiesData = await context.retrieveAll(id[0]);
                     if(propertiesData == null)
                         return null;                
-                    return JsonConvert.SerializeObject(propertiesData) + "1";
+                    return JsonConvert.SerializeObject(propertiesData) ;
             }              
             var PropertyData = await context.retrieve(id[0],id[1]);
             if (PropertyData == null)
                 return null;
-            return JsonConvert.SerializeObject(PropertyData) + "2";
+            return JsonConvert.SerializeObject(PropertyData) ;
             }
-            return "adsda";
+            return "no response";
         }
 
         // [HttpPost(Name = "PropertyRegister")]
