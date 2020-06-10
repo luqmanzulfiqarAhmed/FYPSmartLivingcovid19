@@ -45,7 +45,7 @@ namespace smartLiving.Controllers
                 return null;
             return JsonConvert.SerializeObject(PropertyData) ;
             }
-            return "no response";
+            return "no response wrong parameters!";
         }
 
         // [HttpPost(Name = "PropertyRegister")]
