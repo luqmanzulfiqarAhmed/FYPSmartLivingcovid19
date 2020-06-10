@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace smartLiving.Repostries
 {
-    public class ComplainRepositry : InterfaceDataBase
+    public class ComplainRepositry 
     {
         private MongoDbContext dbContext = null;
         public ComplainRepositry(IConfiguration config)
@@ -44,9 +44,9 @@ namespace smartLiving.Repostries
 
         public async Task<object> retrieve(string societyId,string email)
         {
-            var email = Builders<Complain>.Filter.Eq("residentEmail", email);
-            var societyId = Builders<Complain>.Filter.Eq("societyId",societyId);
-            var combineFilters = Builders<Complain>.Filter.And(societyId, email);
+            var emailData = Builders<Complain>.Filter.Eq("residentEmail", email);
+            var societyData = Builders<Complain>.Filter.Eq("societyId",societyId);
+            var combineFilters = Builders<Complain>.Filter.And(societyData, emailData);
             return await collection.Find(combineFilters).ToListAsync();
             
         }
@@ -56,8 +56,12 @@ namespace smartLiving.Repostries
             var Complain = Builders<Complain>.Filter.Eq("societyId", societyId);
             return await collection.Find(Complain).ToListAsync();
         }
-
-        public async Task<object> update(string id, object Complain)
+public async Task<object> retrieveByComplainId(string complaintId)
+        {
+            var Complain = Builders<Complain>.Filter.Eq("complaintId", complaintId);
+            return await collection.Find(Complain).ToListAsync();
+        }
+        public async Task<object> update(string id, Complain Complain)
         {
             try{
             await collection.ReplaceOneAsync(ZZ => ZZ.complaintId == id, (Complain)Complain);

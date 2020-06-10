@@ -61,7 +61,7 @@ namespace smartLiving.Controllers
         public async Task<String> registerComplain([FromBody]Complain Complain)
 
         {
-            var ComplainData = await context.retrieve(Complain.complaintId);
+            var ComplainData = await context.retrieveByComplainId(Complain.complaintId);
 
 
             ComplainData = JsonConvert.SerializeObject(ComplainData);
