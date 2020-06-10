@@ -29,9 +29,10 @@ namespace smartLiving.Controllers
 
         }
         //http://localhost:5000/api/Complain/1       
-        [HttpGet("{id}", Name = "ComplainProfile")]
+        [HttpGet("{data}", Name = "getComplainData")]
         public async Task<string> getComplainData(string data)
         {
+            if(data != null){
             string[]credentials = data.Split(","); 
             string email = "", sId="";
             if (credentials != null)
@@ -51,7 +52,8 @@ namespace smartLiving.Controllers
                     return null;
             return JsonConvert.SerializeObject(ComplainData);
             }
-            return "No response";
+        }
+            return "data is null";
         }
 
         [HttpPost(Name = "ComplainRegister")]
