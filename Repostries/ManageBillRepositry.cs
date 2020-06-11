@@ -42,13 +42,19 @@ namespace smartLiving.Repostries
             }
         }
 
-        public async Task<object> retrieve(string id)
+        public async Task<object> retrieveById(string id)
         {
             var admin = Builders<ManageBill>.Filter.Eq("billId", id);
 
             return await manageBill.Find(admin).ToListAsync();
         }
-
+public async Task<object> retrieveBySidEmail(string sId,string email)
+        {
+            var bySId = Builders<ManageBill>.Filter.Eq("societyId", sId);
+            var byEmail = Builders<ManageBill>.Filter.Eq("residentEmail", email);
+            var combineFilters = Builders<ManageBill>.Filter.And(bySId, byEmail);
+            return await manageBill.Find(combineFilters).FirstOrDefaultAsync();
+        }
         public async Task<object> retrieveAll(string societyId)
         {
             var admin = Builders<ManageBill>.Filter.Eq("societyId", societyId);

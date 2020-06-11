@@ -22,23 +22,36 @@ namespace smartLiving.Controllers
         }
 
         
-        [HttpGet("{societyId}", Name = "AllHouseResidentBillData")]
-        public async Task<string> getAllHouseResidentBillData(string societyId)
+        [HttpGet("{data}", Name = "getHouseResidentBillData")]
+        public async Task<string> getHouseResidentBillData(string data)
         {
-            var billData = await context.retrieveAll(societyId);
-            return JsonConvert.SerializeObject(billData);
+            string []id=data.Split(",");
+            if(id !=null){                 
+                if(!id[0].Equals(""))
+                {//get all bills Data of a scoiety                    
+                    var billsData = await context.retrieveAll(id[0]);
+                    if(billsData == null)
+                        return null;                
+                    return JsonConvert.SerializeObject(billsData) ;
+            }              
+            var billData = await context.retrieveBySidEmail(id[0],id[1]);
+            if (billData == null)
+                return null;
+            return JsonConvert.SerializeObject(billData) ;
+            }
+            return "no response wrong parameters!";
         }
 
         
-        [HttpGet("{sid}/{id}", Name = "ResidentBill")]
-        public async Task<string> getResidentBill(string sid,string id)
-        {
+        // [HttpGet("{sid},{email}", Name = "getResidentBill")]
+        // public async Task<string> getResidentBill(string sid,string email)
+        // {
 
-            var billData = await context.retrieve(id);
-            if (billData == null)
-                return null;
-            return JsonConvert.SerializeObject(billData);
-        }
+        //     var billData = await context.retrieveBySidEmail(sid,email);
+        //     if (billData == null)
+        //         return null;
+        //     return JsonConvert.SerializeObject(billData);
+        // }
 
         [HttpPost( Name = "submitBill")]
         public async Task<string> submitBill( ManageBill bill)
