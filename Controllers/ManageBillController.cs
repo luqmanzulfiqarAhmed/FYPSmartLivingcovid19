@@ -27,7 +27,7 @@ namespace smartLiving.Controllers
         {
             string []id=data.Split(",");
             if(id !=null){                 
-                if(!id[0].Equals(""))
+                if(!id[0].Equals("") && id[1].Equals(""))
                 {//get all bills Data of a scoiety                    
                     var billsData = await context.retrieveAll(id[0]);
                     if(billsData == null)
