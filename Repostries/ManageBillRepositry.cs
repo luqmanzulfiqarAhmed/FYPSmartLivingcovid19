@@ -54,7 +54,7 @@ public async Task<object> retrieveBySidPidEmail(string sId,string pId,string ema
             var byPId = Builders<ManageBill>.Filter.Eq("propertyId", pId);
             var byEmail = Builders<ManageBill>.Filter.Eq("residentEmail", email);
             var combineFilters = Builders<ManageBill>.Filter.And(bySId,byPId,byEmail);
-            return await manageBill.Find(combineFilters).FirstOrDefaultAsync();
+            return await manageBill.Find(combineFilters).ToListAsync();
         }
         public async Task<object> retrieveAll(string societyId)
         {
