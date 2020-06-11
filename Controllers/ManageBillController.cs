@@ -54,7 +54,7 @@ namespace smartLiving.Controllers
         // }
 
         [HttpPost( Name = "submitBill")]
-        public async Task<string> submitBill( ManageBill bill)
+        public async Task<string> submitBill( [FromBody]ManageBill bill)
         {
             
                 //here first i will call 'calculateBill' function using bill object
@@ -64,13 +64,13 @@ namespace smartLiving.Controllers
             
         }
  
-        [HttpPut( Name = "updateBillManageBill")]
-        public async Task<ActionResult> updateBill( ManageBill bill)
+        [HttpPut( Name = "updateBill")]
+        public async Task<Object> updateBill( [FromBody]ManageBill bill)
         {
             
             //here first i will call 'calculateBill' function using bill object to update bill
-            await context.update("", bill);
-            return NoContent();
+            
+            return await context.update(bill);
         }
 
     }

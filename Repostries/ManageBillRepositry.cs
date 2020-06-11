@@ -62,10 +62,14 @@ public async Task<object> retrieveBySidPidEmail(string sId,string pId,string ema
             return await manageBill.Find(admin).ToListAsync();
         }
 
-        public async Task<object> update(string id, object admin)
+        public async Task<object> update( ManageBill bill)
         {
-            await manageBill.ReplaceOneAsync(ZZ => ZZ.billId == id, (ManageBill)admin);
+            try{
+            await manageBill.ReplaceOneAsync(ZZ => ZZ.billId == bill.billId, bill);
             return true;
+            }catch(Exception ex){
+                return false + ex.Message;
+            }
         }
     }
 
