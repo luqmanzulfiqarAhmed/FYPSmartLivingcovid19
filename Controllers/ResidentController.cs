@@ -45,7 +45,7 @@ namespace smartLiving.Controllers
             if(!sId.Equals("") && !pId.Equals("") && !email.Equals("")  ){
                     var existResident = await context.retrieveBySidPidEmail(sId,pId,email);
             if (existResident == null)
-                return null ;
+                return null+"sid pid email" ;
             return JsonConvert.SerializeObject(existResident) ;        
             }
             if (!sId.Equals(""))
@@ -71,16 +71,7 @@ namespace smartLiving.Controllers
             return "no response";
             
         }
-        [HttpGet("{sid},{temp}", Name = "getResidentDataByWeb")]
-        public async Task<string> getResidentDataByWeb(string sid,string temp)
-
-        {
-                var ResidentDataBySid = await context.retrieveBySid(sid);
-                if (ResidentDataBySid == null)
-                    return null + sid;
-                return JsonConvert.SerializeObject(ResidentDataBySid) ;
-
-        }
+        
         [HttpPost(Name = "ResidentRegister")]
         public async Task<bool> registerResident([FromBody]Resident Resident)
 
