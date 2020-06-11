@@ -27,14 +27,14 @@ namespace smartLiving.Controllers
         {
             string []id=data.Split(",");
             if(id !=null){                 
-                if(!id[0].Equals("") && id[1].Equals(""))
+                if(!id[0].Equals("") && id[1].Equals("") && id[2].Equals(""))
                 {//get all bills Data of a scoiety                    
                     var billsData = await context.retrieveAll(id[0]);
                     if(billsData == null)
                         return null;                
                     return JsonConvert.SerializeObject(billsData) ;
             }              
-            var billData = await context.retrieveBySidEmail(id[0],id[1]);
+            var billData = await context.retrieveBySidPidEmail(id[0],id[1],id[2]);
             if (billData == null)
                 return null;
             return JsonConvert.SerializeObject(billData) ;

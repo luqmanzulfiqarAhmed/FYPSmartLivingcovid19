@@ -48,11 +48,12 @@ namespace smartLiving.Repostries
 
             return await manageBill.Find(admin).ToListAsync();
         }
-public async Task<object> retrieveBySidEmail(string sId,string email)
+public async Task<object> retrieveBySidPidEmail(string sId,string pId,string email)
         {
             var bySId = Builders<ManageBill>.Filter.Eq("societyId", sId);
+            var byPId = Builders<ManageBill>.Filter.Eq("propertyId", pId);
             var byEmail = Builders<ManageBill>.Filter.Eq("residentEmail", email);
-            var combineFilters = Builders<ManageBill>.Filter.And(bySId, byEmail);
+            var combineFilters = Builders<ManageBill>.Filter.And(bySId,byPId,byEmail);
             return await manageBill.Find(combineFilters).FirstOrDefaultAsync();
         }
         public async Task<object> retrieveAll(string societyId)
