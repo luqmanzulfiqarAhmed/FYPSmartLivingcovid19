@@ -48,11 +48,11 @@ namespace smartLiving.Controllers
         public async Task <Object> postShopProfile( [FromBody]Shop Shop)
          {
 
-                return   "  post " + Shop;
+                return JsonConvert.SerializeObject(Shop); 
          }
 
         [HttpPut("{sIdPId}", Name = "updateShopProfile")]        
-        public async Task <Object> updateShopProfile( string sIdPId,[FromHeader]Shop Shop)
+        public async Task <Object> updateShopProfile( string sIdPId,[FromBody]Shop Shop)
          {
         //      if(Shop != null){
         //         string []id=sIdPId.Split(",");
@@ -64,7 +64,7 @@ namespace smartLiving.Controllers
         //     return "no comma detected";
         //      }
         //      return "shop is null";
-                return "jahdjhasdb" + "your data!!!   " + Shop;
+                return JsonConvert.SerializeObject(Shop); 
         }
     }
 }
