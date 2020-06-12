@@ -45,7 +45,7 @@ namespace smartLiving.Controllers
        
          
 
-        [HttpPut("{sIdPId}", Name = "updateShopProfile")]        
+        [HttpPut("{sIdPId},{Shop}", Name = "updateShopProfile")]        
         public async Task <Object> updateShopProfile( string sIdPId,[FromBody]Shop Shop)
          {
             
