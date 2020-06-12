@@ -44,7 +44,7 @@ namespace smartLiving.Controllers
 
        
         
-        [HttpPost( Name = "postShopProfile")]         
+        [HttpPost( "{sIdPId}" ,Name = "postShopProfile")]         
         public async Task <Object> postShopProfile( string sIdPId,[FromBody]Shop Shop)
          {
 
