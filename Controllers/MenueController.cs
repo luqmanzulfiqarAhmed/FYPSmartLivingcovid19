@@ -46,7 +46,7 @@ namespace smartLiving.Controllers
          
 
         [HttpPut("{sIdPId}", Name = "updateShopProfile")]        
-        public async Task <Object> updateShopProfile( string sIdPId,[FromForm]Shop Shop)
+        public async Task <Object> updateShopProfile( string sIdPId,[FromBody]Shop Shop)
          {
             
                 string []id=sIdPId.Split(",");
