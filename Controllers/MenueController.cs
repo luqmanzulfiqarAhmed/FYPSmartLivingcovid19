@@ -45,7 +45,7 @@ namespace smartLiving.Controllers
        
         
         [HttpPost( Name = "postShopProfile")]         
-        public async Task <Object> postShopProfile( [FromBody]Shop Shop)
+        public async Task <Object> postShopProfile( string sIdPId,[FromBody]Shop Shop)
          {
 
                 return JsonConvert.SerializeObject(Shop); 
