@@ -43,7 +43,13 @@ namespace smartLiving.Controllers
         }
 
        
-         
+        
+        [HttpPost("{sIdPId}", Name = "postShopProfile")]         
+        public async Task <Object> postShopProfile( string sIdPId,[FromBody]Shop Shop)
+         {
+
+                return sIdPId + "  post " + Shop;
+         }
 
         [HttpPut("{sIdPId}", Name = "updateShopProfile")]        
         public async Task <Object> updateShopProfile( string sIdPId,[FromHeader]Shop Shop)
