@@ -47,8 +47,19 @@ namespace smartLiving.Controllers
         [HttpPost( "{sIdPId}" ,Name = "postShopProfile")]         
         public async Task <Object> postShopProfile( string sIdPId,[FromBody]Shop Shop)
          {
+                  if(Shop != null){
+                string []id=sIdPId.Split(",");
+            if(id !=null && sIdPId.Contains(",")){                                 
+           Object flag = await context.updateShop(id[0],id[1], Shop);
+            
+            return flag;
+            }            
+            return "no comma detected";
+             }
+             return "shop is null";
+        
 
-                return JsonConvert.SerializeObject(Shop); 
+                
          }
 
         [HttpPut("{sIdPId}", Name = "updateShopProfile")]        
