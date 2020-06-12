@@ -45,8 +45,8 @@ namespace smartLiving.Controllers
        
          
 
-        [HttpPut( Name = "updateShopProfile")]        
-        public async Task <Object> updateShopProfile([FromBody]Shop Shop)
+        [HttpPut("{sIdPId}/{Shop}", Name = "updateShopProfile")]        
+        public async Task <Object> updateShopProfile( string sIdPId,[FromBody]Shop Shop)
          {
         //      if(Shop != null){
         //         string []id=sIdPId.Split(",");
@@ -58,7 +58,7 @@ namespace smartLiving.Controllers
         //     return "no comma detected";
         //      }
         //      return "shop is null";
-                return "jahdjhasdb" + "your data" + Shop;
+                return "jahdjhasdb" + "your data!!!   " + Shop;
         }
     }
 }
