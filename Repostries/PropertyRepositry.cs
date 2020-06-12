@@ -93,7 +93,7 @@ public async Task<Object> retrievePropertyBySidPid(string sId,string pId)
                  return ex.Message;   
             }
         }
-        public async Task<Object> updateShop(string sId,string pId,Shop shop)
+        public async Task<Object> updateShop(string sId,string pId,Menue menue)
         {
             try{
                 var society = Builders<Property>.Filter.Eq("societyId", sId);
@@ -105,7 +105,7 @@ public async Task<Object> retrievePropertyBySidPid(string sId,string pId)
                 Property prop  = itemsTask.Result;    
             if(prop.Commercial !=null) {
                     if(prop.Commercial.shop != null){
-                        prop.Commercial.shop = shop;
+                        prop.Commercial.shop.shopMenues.Add(menue);
                         await collection.ReplaceOneAsync(ZZ => ZZ.propertyId == pId && 
                         ZZ.societyId == sId, prop);
                         return true;
