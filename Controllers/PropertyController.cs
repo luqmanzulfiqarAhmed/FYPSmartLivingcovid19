@@ -33,7 +33,7 @@ namespace smartLiving.Controllers
         {
                 string []id=data.Split(",");
             if(id !=null){                 
-                if(!id[0].Equals("") && id[1].Equals(""))
+                if(!id[0].Equals(""))
                 {//get all properties of a scoiety                    
                     var propertiesData = await context.retrieveAll(id[0]);
                     if(propertiesData == null)
@@ -80,12 +80,12 @@ namespace smartLiving.Controllers
 
         [HttpPut
         ]
-        public async Task<ActionResult> updatePropertyProfile([FromBody]Property Property)
+        public async Task<Object> updatePropertyProfile([FromBody]Property Property)
         {
 
 
-            await context.update(Property.propertyId, Property);
-            return Ok(Property);
+            Object result = await context.updateProperty(Property);
+            return result;
         }
     }
 }

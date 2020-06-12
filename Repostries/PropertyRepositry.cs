@@ -3,6 +3,9 @@ using MongoDB.Driver;
 using System.Threading.Tasks;
 using smartLiving.Models;
 using smartLiving.MongoDb;
+using System;
+using System.Collections.Generic;
+using System.Reflection.Metadata;
 
 namespace smartLiving.Repostries
 {
@@ -47,27 +50,58 @@ namespace smartLiving.Repostries
 
         }
 
-        public async Task<object> retrieve(string sId,string pId)
+        public async Task<Shop> retrieve(string sId,string pId)
+
         {
             var Property = Builders<Property>.Filter.Eq("propertyId", pId);
             var society = Builders<Property>.Filter.Eq("societyId", sId);
             var combineFilters = Builders<Property>.Filter.And(society,Property);            
-            return await collection.Find(Property).FirstOrDefaultAsync();
+            Task <Property> itemsTask =Task.Run(() =>( collection.Find(Property).FirstOrDefaultAsync() )) ;            
+
+            if(itemsTask !=null){    
+            Property prop  = itemsTask.Result;    
+            if(prop.Commercial !=null)        {
+            Shop shopData = prop.Commercial.shop;            
+            return shopData;}
+            }
+            return null;
         }
 
-        public async Task<object> retrieveAll(string societyId)
+        public async Task<Object> retrieveAll(string societyId)
         {
             var Property = Builders<Property>.Filter.Eq("societyId", societyId);
             return await collection.Find(Property).ToListAsync();
 
             
         }
-
-        public async Task<object> update(string id, object Property)
+        public async Task<object> updateProperty(Property prop)
         {
-            await collection.ReplaceOneAsync(ZZ => ZZ.propertyId == id, (Property)Property);
+            try{
+                await collection.ReplaceOneAsync(ZZ => ZZ.propertyId == prop.propertyId && 
+            ZZ.societyId == prop.societyId, prop);
             return true;
+            }catch(Exception ex){
+                 return ex.Message;   
+            }
         }
+        public async Task<Object> updateShop(string sId,string pId,Shop shop)
+        {
+            try{
+            var Property = Builders<Property>.Filter.Eq("propertyId", pId);
+            var society = Builders<Property>.Filter.Eq("societyId", sId);
+            var combineFilters = Builders<Property>.Filter.And(society,Property);            
+            Object var = collection.Find(Property).FirstOrDefaultAsync();
+            Property prop  = (Property)var;
+            prop.Commercial.shop = shop;
+            await collection.ReplaceOneAsync(ZZ => ZZ.propertyId == pId && 
+            ZZ.societyId == sId, prop);
+            return true;
+            }catch(Exception ex){
+                return ex.Message;
+            
+            }
+        }
+        
     }
 
 
