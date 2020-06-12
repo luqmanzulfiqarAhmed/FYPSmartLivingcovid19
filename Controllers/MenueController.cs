@@ -45,19 +45,20 @@ namespace smartLiving.Controllers
        
          
 
-        [HttpPut("{sIdPId}", Name = "updateShopProfile")]        
-        public async Task <Object> updateShopProfile( string sIdPId,[FromBody]Shop Shop)
+        [HttpPut( Name = "updateShopProfile")]        
+        public async Task <Object> updateShopProfile([FromBody]Shop Shop)
          {
-             if(Shop != null){
-                string []id=sIdPId.Split(",");
-            if(id !=null && sIdPId.Contains(",")){                                 
-           Object flag = await context.updateShop(id[0],id[1], Shop);
+        //      if(Shop != null){
+        //         string []id=sIdPId.Split(",");
+        //     if(id !=null && sIdPId.Contains(",")){                                 
+        //    Object flag = await context.updateShop(id[0],id[1], Shop);
             
-            return flag;
-            }            
-            return "no comma detected";
-             }
-             return "shop is null";
+        //     return flag;
+        //     }            
+        //     return "no comma detected";
+        //      }
+        //      return "shop is null";
+                return "jahdjhasdb" + "your data" + Shop;
         }
     }
 }
