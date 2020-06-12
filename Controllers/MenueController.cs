@@ -36,7 +36,7 @@ namespace smartLiving.Controllers
         [HttpGet("{sId},{pId}", Name = "getShopData")]
         public async Task<Object> getShopData(string sId,string pId)
         {
-            var ShopData = await context.retrieve(sId,pId);
+            var ShopData = await context.retrieveShop(sId,pId);
             if (ShopData == null)
                 return "no data";
             return JsonConvert.SerializeObject(ShopData);        

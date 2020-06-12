@@ -49,8 +49,17 @@ namespace smartLiving.Repostries
             
 
         }
+public async Task<Object> retrievePropertyBySidPid(string sId,string pId)
 
-        public async Task<Shop> retrieve(string sId,string pId)
+        {
+            var bySId = Builders<Property>.Filter.Eq("societyId", sId);
+            var byPId = Builders<Property>.Filter.Eq("propertyId", pId);
+            var combineFilters = Builders<Property>.Filter.And(bySId, byPId);
+            var result = await collection.Find(combineFilters).FirstOrDefaultAsync();            
+            return result;
+
+        }
+        public async Task<Shop> retrieveShop(string sId,string pId)
 
         {
             var Property = Builders<Property>.Filter.Eq("propertyId", pId);
