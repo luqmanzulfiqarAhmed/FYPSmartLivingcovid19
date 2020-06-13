@@ -44,7 +44,7 @@ namespace TestProjectProperty
             services.AddScoped<Notification>();
             services.AddScoped<TransportRepositry>();
             services.AddScoped<ManageBillRepositry>();
-            services.AddScoped<ShopRepositry>();
+            services.AddScoped<MarriageHallRepositry>();
             
         }
 
