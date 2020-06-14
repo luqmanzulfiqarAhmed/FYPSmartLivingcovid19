@@ -45,27 +45,27 @@ namespace smartLiving.Controllers
             if(!sId.Equals("") && !pId.Equals("") && !email.Equals("")  ){
                     var existResident = await context.retrieveBySidPidEmail(sId,pId,email);
             if (existResident == null)
-                return null+"sid pid email" ;
+                return null ;
             return JsonConvert.SerializeObject(existResident) ;        
             }
             if (!sId.Equals(""))
             {
                 var ResidentDataBySid = await context.retrieveBySid(sId);
                 if (ResidentDataBySid == null)
-                    return null + sId;
+                    return null ;
                 return JsonConvert.SerializeObject(ResidentDataBySid);
             }
             if (!email.Equals(""))
             {
                 var ResidentData = await context.retrieveByEmail(email);
                 if (ResidentData == null)
-                    return null + email;
+                    return null ;
                 return JsonConvert.SerializeObject(ResidentData);
             }            
             if(!sId.Equals("") && !pId.Equals("")) {
             var ResidentDataByIds = await context.retrieveBySidPid(sId,pId);
             if (ResidentDataByIds == null)
-                return null + sId + pId;
+                return null ;
             return JsonConvert.SerializeObject(ResidentDataByIds);
             }
             return "no response";
