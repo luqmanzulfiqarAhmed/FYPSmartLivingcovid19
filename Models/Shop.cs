@@ -10,8 +10,13 @@ namespace smartLiving.Models
     public class Shop
     {
         public Shop() { }
+
+        [BsonElement("minOrderPrice")]
+        public string minOrderPrice = "300";
+        [BsonElement("deleiveryCharges")]
+        public string deleiveryCharges = "50";
         [BsonElement("shopMenues")]
-        public List<Menue> shopMenues;
+        public List<Menue> shopMenues ;
 
     }
 }

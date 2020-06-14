@@ -25,7 +25,7 @@ namespace smartLiving.Repostries
         }
         private readonly IMongoCollection<Property> collection;
 
-        public async Task<MarriageHall> retrieveMarriageHall(string sId,string pId)
+        public async Task<Object> retrieveMarriageHall(string sId,string pId)
 
         {
             var Property = Builders<Property>.Filter.Eq("propertyId", pId);
@@ -34,11 +34,14 @@ namespace smartLiving.Repostries
             Task <Property> itemsTask =Task.Run(() =>( collection.Find(Property).FirstOrDefaultAsync() )) ;            
 
             if(itemsTask !=null){    
-            Property prop  = itemsTask.Result;    
-            if(prop.Commercial !=null)        {
-            MarriageHall marriageHallData = prop.Commercial.marriageHall;            
-            return marriageHallData;
+                Property prop  = itemsTask.Result; 
+                if(prop != null)   {
+            if(prop.Commercial !=null){
+                MarriageHall marriageHallData = prop.Commercial.marriageHall;            
+                    return marriageHallData;
                 }
+                }
+                return "No property found";
             }
             return null;
         }
@@ -54,10 +57,18 @@ namespace smartLiving.Repostries
                 Property prop  = itemsTask.Result;    
             if(prop.Commercial !=null) {
                     if(prop.Commercial.marriageHall != null){
+                          if( prop.Commercial.marriageHall.menues != null){  
                         prop.Commercial.marriageHall.menues.Add(menue);
-                        await collection.ReplaceOneAsync(ZZ => ZZ.propertyId == pId && 
-                        ZZ.societyId == sId, prop);
-                        return true;
+                            await collection.ReplaceOneAsync(ZZ => ZZ.propertyId == pId && 
+                            ZZ.societyId == sId, prop);
+                        return prop;
+                          }else{
+                        //       prop.Commercial.marriageHall.menues = new Menue();
+                        //       prop.Commercial.marriageHall.menues.Add(menue);
+                        //     await collection.ReplaceOneAsync(ZZ => ZZ.propertyId == pId && 
+                        //     ZZ.societyId == sId, prop);
+                        // return "menue created";
+                          }
                     }else{
                         return  pId+ " is not a marriage Hall"  ;
                     }
