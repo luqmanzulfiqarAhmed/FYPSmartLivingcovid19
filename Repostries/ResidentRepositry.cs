@@ -47,10 +47,13 @@ namespace smartLiving.Repostries
             var Resident = Builders<Resident>.Filter.Eq("residentEmaill", email);
             return await collection.Find(Resident).SingleAsync();
         }
-        public async Task<object> retrieveList(string email)
+        public async Task<object> retrieveList(string email,string sId,string pId)
         {
             var Resident = Builders<Resident>.Filter.Eq("residentEmaill", email);
-            return await collection.Find(Resident).ToListAsync();
+            var bySId = Builders<Resident>.Filter.Eq("societyId", sId);
+            var byPId = Builders<Resident>.Filter.Eq("propertyId", pId);
+            var combineFilters = Builders<Resident>.Filter.And(bySId, byPId);
+            return await collection.Find(combineFilters).ToListAsync();
         }
         public async Task<object> retrieveBySidPid(string pId,string sId)
         {

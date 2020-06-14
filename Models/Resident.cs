@@ -10,7 +10,9 @@ namespace smartLiving.Models
     public class Resident
     {
         
-
+        [BsonElement("societyIdPropertyIdResidentEmaill")]
+        public string societyIdPropertyIdResidentEmaill;
+        
         [BsonElement("societyId")]
         public string societyId;
         [BsonElement("propertyId")]

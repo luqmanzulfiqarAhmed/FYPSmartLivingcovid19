@@ -76,7 +76,8 @@ namespace smartLiving.Controllers
         public async Task<bool> registerResident([FromBody]Resident Resident)
 
         {
-            var ResidentData = await context.retrieveList(Resident.residentEmaill);
+            var ResidentData = await context.retrieveList(Resident.residentEmaill
+            ,Resident.societyId,Resident.propertyId);
 
 
             ResidentData = JsonConvert.SerializeObject(ResidentData);
