@@ -20,7 +20,7 @@ namespace smartLiving.MongoDb
             // database = client.GetDatabase("HousingSocietyAppBuilder");
 
             string connectionString =
-  @"mongodb://smartlivingdb:zyCRVgRxGCJ61dHaQ3VDBqwAt3MGjSb2SbbECCt9wroIX26Ne1m9lEj6Uk2B65nxYVzvEQjfgmlOasG0ZfcsuA==@smartlivingdb.documents.azure.com:10255/?ssl=true&replicaSet=globaldb";
+  @"mongodb://mongodbfyp:hSWkjL1hjX944DCjfkwEMzHA4JRvGAAUOt8ZiRu1CVqyRMAQ8bs9LkVaOAe4xTtN0WM5tOf7Va3N13vRCdKU9g==@mongodbfyp.documents.azure.com:10255/?ssl=true&replicaSet=globaldb";
             MongoClientSettings settings = MongoClientSettings.FromUrl(
               new MongoUrl(connectionString)
             );
