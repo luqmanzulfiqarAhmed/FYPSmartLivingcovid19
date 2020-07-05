@@ -30,7 +30,7 @@ namespace smartLiving.Controllers
             
         }
          //http://localhost:5000/api/GraveBooking/1       
-        [HttpGet("{id}", Name = "GraveBookProfile")]
+        [HttpGet("{id}", Name = "getGraveBookData")]
         public async Task<string> getGraveBookData(string id)
         {
             var adminData = await context.retrieve(id);
