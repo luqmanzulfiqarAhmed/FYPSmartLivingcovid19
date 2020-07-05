@@ -7,7 +7,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using smartLiving.MongoDb;
 using Newtonsoft.Json;
-namespace smartLiving.Repositires
+namespace smartLiving.Repostries
 
 {
     public class AdminRepositry

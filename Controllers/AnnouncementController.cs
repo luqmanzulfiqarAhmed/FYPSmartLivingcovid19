@@ -29,10 +29,10 @@ namespace smartLiving.Controllers
 
         }
         //http://localhost:5000/api/Announcement/1       
-        [HttpGet("{id}", Name = "AnnouncementProfile")]
+        [HttpGet("{societyId}", Name = "AnnouncementProfile")]
         public async Task<string> getAnnouncementData(string societyId)
         {
-            var AnnouncementData = await context.retrieve(societyId);
+            var AnnouncementData = await context.retrieveAll(societyId);
             if (AnnouncementData == null)
                 return null;
             return JsonConvert.SerializeObject(AnnouncementData);
@@ -65,6 +65,13 @@ namespace smartLiving.Controllers
 
             await context.update(Announcement.anouncementId, Announcement);
             return Ok(Announcement);
+        }
+        [HttpDelete]
+        public async Task<bool> deleteAnnouncement(string anouncementId){
+            bool flag = false;
+                flag = await context.delete(anouncementId);
+
+            return flag;
         }
     }
 }

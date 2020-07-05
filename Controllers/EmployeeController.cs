@@ -10,7 +10,7 @@ using smartLiving.Repostries;
 
 namespace smartLiving.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/Employee")]
     [ApiController]
     public class EmployeeController : ControllerBase
     {
@@ -20,27 +20,27 @@ namespace smartLiving.Controllers
         {
             context = EmployeeRepositry;
         }
-        [HttpGet]
+        [HttpGet(Name = "getAllEmployeesData")]
         public async Task<string> getAllEmployeesData()
         {
 
             var EmployeeData = await context.retriveAllData();
-            return JsonConvert.SerializeObject(EmployeeData);
+            return JsonConvert.SerializeObject(EmployeeData) ;
 
         }
         //http://localhost:5000/api/Employee/1       
-        [HttpGet("{id}", Name = "EmployeeProfile")]
+        [HttpGet("{societyId}", Name = "EmployeeProfile")]
         public async Task<string> getEmployeeData(string societyId)
         {
-            var EmployeeData = await context.retrieve(societyId);
+            var EmployeeData = await context.retrieveAll(societyId);
             if (EmployeeData == null)
                 return null;
             return JsonConvert.SerializeObject(EmployeeData);
         }
-
-        public async Task<string> getEmployeeData(string societyId,string designation)
+        [HttpGet("{societyId}/{department}", Name = "EmployeeProfiledepartment")]
+        public async Task<string> getEmployeeDataByDepartment(string societyId,string department)
         {
-            var EmployeeData = await context.retrieve(societyId);
+            var EmployeeData = await context.retrieveByDepartment(societyId,department);
             if (EmployeeData == null)
                 return null;
             return JsonConvert.SerializeObject(EmployeeData);

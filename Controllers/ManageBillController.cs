@@ -5,7 +5,8 @@ using System.Threading.Tasks;
 
 using Microsoft.AspNetCore.Mvc;
 
-using smartLiving.Repositires;
+
+using smartLiving.Repostries;
 using smartLiving.Models;
 using Newtonsoft.Json;
 
@@ -20,44 +21,56 @@ namespace smartLiving.Controllers
             context = billRepositry;
         }
 
-        [Route("[action]/{societyId}")]
-        [HttpGet("{societyId}", Name = "AllHouseResidentBillData")]
-        public async Task<string> getAllHouseResidentBillData(string societyId)
+        
+        [HttpGet("{data}", Name = "getHouseResidentBillData")]
+        public async Task<string> getHouseResidentBillData(string data)
         {
-            var billData = await context.retrieveAll(societyId);
-            return JsonConvert.SerializeObject(billData);
-        }
-
-        [Route("[action]/{id}")]
-        [HttpGet("{id}", Name = "ResidentBill")]
-        public async Task<string> getResidentBill(string id)
-        {
-
-            var billData = await context.retrieve(id);
+            string []id=data.Split(",");
+            if(id !=null){                 
+                if(!id[0].Equals("") && id[1].Equals("") && id[2].Equals(""))
+                {//get all bills Data of a scoiety                    
+                    var billsData = await context.retrieveAll(id[0]);
+                    if(billsData == null)
+                        return null;                
+                    return JsonConvert.SerializeObject(billsData) ;
+            }              
+            var billData = await context.retrieveBySidPidEmail(id[0],id[1],id[2]);
             if (billData == null)
                 return null;
-            return JsonConvert.SerializeObject(billData);
+            return JsonConvert.SerializeObject(billData) ;
+            }
+            return "no response wrong parameters!";
         }
 
-        [HttpPost("{residentId,bill}", Name = "submitBill")]
-        public async Task<ActionResult<ManageBill>> submitBill(string residentId, ManageBill bill)
+        
+        // [HttpGet("{sid},{email}", Name = "getResidentBill")]
+        // public async Task<string> getResidentBill(string sid,string email)
+        // {
+
+        //     var billData = await context.retrieveBySidEmail(sid,email);
+        //     if (billData == null)
+        //         return null;
+        //     return JsonConvert.SerializeObject(billData);
+        // }
+
+        [HttpPost( Name = "submitBill")]
+        public async Task<string> submitBill( [FromBody]ManageBill bill)
         {
-            if (residentId == bill.residentEmail)
-            {
+            
                 //here first i will call 'calculateBill' function using bill object
-                await context.insert(bill);
-                return CreatedAtAction("submitBill", new ManageBill { billId = bill.billId }, bill);//just telling that this HouseResident is registered with this id
-            }
-            return BadRequest();
+                string msg = await context.insert(bill);
+                return msg;
+            
+            
         }
  
-        [HttpPut( Name = "updateBillManageBill")]
-        public async Task<ActionResult> updateBill( ManageBill bill)
+        [HttpPut( Name = "updateBill")]
+        public async Task<Object> updateBill( [FromBody]ManageBill bill)
         {
             
             //here first i will call 'calculateBill' function using bill object to update bill
-            await context.update("", bill);
-            return NoContent();
+            
+            return await context.update(bill);
         }
 
     }

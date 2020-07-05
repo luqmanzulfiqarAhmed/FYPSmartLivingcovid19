@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using smartLiving.Models;
 using smartLiving.MongoDb;
 
-namespace smartLiving.Repositires
+namespace smartLiving.Repostries
 {
     public class ManageBillRepositry 
     {
@@ -31,30 +31,45 @@ namespace smartLiving.Repositires
             return true;
         }
 
-        public async Task<object> insert(object admin)
+        public async Task<string> insert(object admin)
         {
+            try{
             await manageBill.InsertOneAsync((ManageBill)admin);
-
-            return true;
+            return "true";
+            }catch(Exception ex){
+                    string ax = ex.Message;
+                return ax;
+            }
         }
 
-        public async Task<object> retrieve(string id)
+        public async Task<object> retrieveById(string id)
         {
-            var admin = Builders<ManageBill>.Filter.Eq("Id", id);
+            var admin = Builders<ManageBill>.Filter.Eq("billId", id);
 
             return await manageBill.Find(admin).ToListAsync();
         }
-
+public async Task<object> retrieveBySidPidEmail(string sId,string pId,string email)
+        {
+            var bySId = Builders<ManageBill>.Filter.Eq("societyId", sId);
+            var byPId = Builders<ManageBill>.Filter.Eq("propertyId", pId);
+            var byEmail = Builders<ManageBill>.Filter.Eq("residentEmail", email);
+            var combineFilters = Builders<ManageBill>.Filter.And(bySId,byPId,byEmail);
+            return await manageBill.Find(combineFilters).ToListAsync();
+        }
         public async Task<object> retrieveAll(string societyId)
         {
-            var admin = Builders<ManageBill>.Filter.Eq("HousingSocietyID", societyId);
+            var admin = Builders<ManageBill>.Filter.Eq("societyId", societyId);
             return await manageBill.Find(admin).ToListAsync();
         }
 
-        public async Task<object> update(string id, object admin)
+        public async Task<object> update( ManageBill bill)
         {
-            await manageBill.ReplaceOneAsync(ZZ => ZZ.billId == id, (ManageBill)admin);
+            try{
+            await manageBill.ReplaceOneAsync(ZZ => ZZ.billId == bill.billId, bill);
             return true;
+            }catch(Exception ex){
+                return false + ex.Message;
+            }
         }
     }
 

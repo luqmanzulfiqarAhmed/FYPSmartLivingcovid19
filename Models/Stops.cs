@@ -11,13 +11,14 @@ namespace smartLiving.Models
     {
         public Stops() { }
         [BsonElement("stopName")]
-        public string stopName;
+        public string stopName;        
+        [BsonElement("arivalTime")]
+        public string arivalTime;
+        [BsonElement("departureTime")]
+        public string departureTime;
+
         [BsonElement("location")]
         public Location location;
-        [BsonElement("arivalTime")]
-        public Location arivalTime;
-        [BsonElement("departureTime")]
-        public Location departureTime;
         public class Location {
             public Location() { }
             public string lat, lng;

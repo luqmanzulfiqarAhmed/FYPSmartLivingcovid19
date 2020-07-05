@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 
-using smartLiving.Repositires;
+using smartLiving.Repostries;
 using smartLiving.Models;
 using Newtonsoft.Json;
 

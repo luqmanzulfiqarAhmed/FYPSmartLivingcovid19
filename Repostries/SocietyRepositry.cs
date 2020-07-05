@@ -44,17 +44,22 @@ namespace smartLiving.Repostries
 
         public async Task<object> retrieve(string pId)
         {
+            try{
             var society = Builders<Society>.Filter.Eq("societyId", pId);
-            return await collection.Find(society).SingleAsync();
+                return await collection.Find(society).FirstOrDefaultAsync();
+            }catch(Exception ex){
+                    return ex.Message;
+            }
+            
+        }
+public async Task<object> retrieveAllById(string pId)
+        {
+            var society = Builders<Society>.Filter.Eq("societyId", pId);
+            return await collection.Find(society).ToListAsync();
 
             
         }
-
-        public async Task<object> retrieveAll(string societyId)
-        {
-            var Society = Builders<Society>.Filter.Eq("societyId", societyId);
-            return await collection.Find(Society).ToListAsync();
-        }
+        
 
         public async Task<object> update(string id, object Society)
         {

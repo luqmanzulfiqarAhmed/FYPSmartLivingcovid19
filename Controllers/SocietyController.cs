@@ -10,7 +10,7 @@ using smartLiving.Repostries;
 
 namespace smartLiving.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/Society")]
     [ApiController]
     public class SocietyController : ControllerBase
     {
@@ -29,7 +29,7 @@ namespace smartLiving.Controllers
 
         }
         //http://localhost:5000/api/Society/1       
-        [HttpGet("{id}", Name = "SocietyProfile")]
+        [HttpGet("{id}", Name = "getSocietyData")]
         public async Task<string> getSocietyData(string id)
         {
             var SocietyData = await context.retrieve(id);
@@ -43,7 +43,7 @@ namespace smartLiving.Controllers
         public async Task<String> registerSociety([FromBody]Society Society)
 
         {
-            var SocietyData = await context.retrieve(Society.societyId);
+            var SocietyData = await context.retrieveAllById(Society.societyId);
 
 
             SocietyData = JsonConvert.SerializeObject(SocietyData);

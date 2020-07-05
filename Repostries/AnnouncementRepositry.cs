@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace smartLiving.Repostries
 {
-    public class AnnouncementRepositry : InterfaceDataBase
+    public class AnnouncementRepositry 
     {
         private MongoDbContext dbContext = null;
         public AnnouncementRepositry(IConfiguration config)
@@ -27,10 +27,15 @@ namespace smartLiving.Repostries
         }
 
         //not defined yet because we will not delete in server we only disable particular account
-        public async Task<object> delete(string id)
+        public async Task<bool> delete(string id)
         {
-
+            try {
+            var announcement = Builders<Announcement>.Filter.Eq("anouncementId", id);
+            await collection.DeleteOneAsync(announcement);    
             return true;
+            }catch(Exception ex){
+                return false;
+            }
         }
 
         public async Task<object> insert(object obj)

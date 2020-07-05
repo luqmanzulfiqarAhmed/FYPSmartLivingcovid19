@@ -21,7 +21,7 @@ namespace smartLiving.Repostries
         }
         private readonly IMongoCollection<Employee> collection;
 
-        public async Task<object> retriveAllData()
+        public async Task<Object> retriveAllData()
         {
             return await collection.Find(x => true).ToListAsync();
         }
@@ -46,6 +46,14 @@ namespace smartLiving.Repostries
         {
             var Employee = Builders<Employee>.Filter.Eq("employeeEmail", pId);
             return await collection.Find(Employee).ToListAsync();
+        }
+
+        public async Task<object> retrieveByDepartment(string sId,string department)
+        {
+            var society= Builders<Employee>.Filter.Eq("societyId", sId);
+            var byDept = Builders<Employee>.Filter.Eq("employeeDepartment", department);
+            var combineFilters = Builders<Employee>.Filter.And(society, byDept);
+            return await collection.Find(combineFilters).ToListAsync();
         }
 
         public async Task<object> retrieveAll(string societyId)

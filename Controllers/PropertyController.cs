@@ -28,23 +28,25 @@ namespace smartLiving.Controllers
 
         }
         //http://localhost:5000/api/Property/1       
-        [HttpGet("{data}", Name = "PropertyProfile")]
+        [HttpGet("{data}", Name = "getPropertyData")]
         public async Task<string> getPropertyData(  string data)
         {
                 string []id=data.Split(",");
-            if(id !=null){    
-            if(id[1].Equals("")){//get all properties of a scoiety
-                    
-            var propertiesData = await context.retrieveAll(id[0]);
-            return JsonConvert.SerializeObject(propertiesData);
-
-            }
-            var PropertyData = await context.retrieve(id[0],id[1]);
+            if(id !=null){                 
+                if(!id[0].Equals("") && id[1].Equals(""))
+                {//get all properties of a scoiety                    
+                    var propertiesData = await context.retrieveAll(id[0]);
+                    if(propertiesData == null)
+                        return null;                
+                    return JsonConvert.SerializeObject(propertiesData) ;
+            }              
+            //get all property by id of a scoiety 
+            var PropertyData = await context.retrievePropertyBySidPid(id[0],id[1]);
             if (PropertyData == null)
                 return null;
-            return JsonConvert.SerializeObject(PropertyData);
+            return JsonConvert.SerializeObject(PropertyData) ;
             }
-            return "adsda";
+            return "no response wrong parameters!";
         }
 
         // [HttpPost(Name = "PropertyRegister")]
@@ -64,10 +66,10 @@ namespace smartLiving.Controllers
 
         //     return PropertyData.ToString();
         // }
-        [HttpPost(Name = "PropertyRegisterAll")]
-        public async Task<bool> registerPropertiesAll([FromBody]Property[] Property){
+        [HttpPost(Name = "registerPropertiesAll")]
+        public async Task<string> registerPropertiesAll([FromBody]Property[] Property){
 
-                bool flag =await context.insert(Property);
+                string flag =await context.insert(Property);
                 return flag;
                 
         }
@@ -78,12 +80,12 @@ namespace smartLiving.Controllers
 
         [HttpPut
         ]
-        public async Task<ActionResult> updatePropertyProfile([FromBody]Property Property)
+        public async Task<Object> updatePropertyProfile([FromBody]Property Property)
         {
 
 
-            await context.update(Property.propertyId, Property);
-            return Ok(Property);
+            Object result = await context.updateProperty(Property);
+            return result;
         }
     }
 }

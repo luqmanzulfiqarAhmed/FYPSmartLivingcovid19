@@ -10,7 +10,7 @@ using smartLiving.Repostries;
 using smartLiving;
 namespace smartLiving.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/Resident")]
     [ApiController]
     public class ResidentController : ControllerBase
     {
@@ -25,14 +25,15 @@ namespace smartLiving.Controllers
         {
 
             var ResidentData = await context.retriveAllData();
-            return JsonConvert.SerializeObject(ResidentData);
+            return JsonConvert.SerializeObject(ResidentData)+"in all" ;
 
         }
         //http://localhost:5000/api/Resident/1       
-        [HttpGet("{data}", Name = "ResidentProfile")]
+        [HttpGet("{data}", Name = "getResidentData")]
         public async Task<string> getResidentData(string data)
 
         {
+            
             string[]credentials = data.Split(","); 
             string email = "", sId="", pId="";
             if (credentials != null)
@@ -41,24 +42,42 @@ namespace smartLiving.Controllers
                 pId = credentials[1];                
                 email = credentials[2];
             }
+            if(!sId.Equals("") && !pId.Equals("") && !email.Equals("")  ){
+                    var existResident = await context.retrieveBySidPidEmail(sId,pId,email);
+            if (existResident == null)
+                return null ;
+            return JsonConvert.SerializeObject(existResident) ;        
+            }
+            if (!sId.Equals(""))
+            {
+                var ResidentDataBySid = await context.retrieveBySid(sId);
+                if (ResidentDataBySid == null)
+                    return null ;
+                return JsonConvert.SerializeObject(ResidentDataBySid);
+            }
             if (!email.Equals(""))
             {
                 var ResidentData = await context.retrieveByEmail(email);
                 if (ResidentData == null)
-                    return null;
+                    return null ;
                 return JsonConvert.SerializeObject(ResidentData);
-            }
+            }            
+            if(!sId.Equals("") && !pId.Equals("")) {
             var ResidentDataByIds = await context.retrieveBySidPid(sId,pId);
             if (ResidentDataByIds == null)
-                return null;
+                return null ;
             return JsonConvert.SerializeObject(ResidentDataByIds);
+            }
+            return "no response";
+            
         }
-
+        
         [HttpPost(Name = "ResidentRegister")]
-        public async Task<String> registerResident([FromBody]Resident Resident)
+        public async Task<bool> registerResident([FromBody]Resident Resident)
 
         {
-            var ResidentData = await context.retrieveByEmail(Resident.residentEmaill);
+            var ResidentData = await context.retrieveList(Resident.residentEmaill
+            ,Resident.societyId,Resident.propertyId);
 
 
             ResidentData = JsonConvert.SerializeObject(ResidentData);
@@ -67,22 +86,21 @@ namespace smartLiving.Controllers
                 
                 await context.insert(Resident);
 
-                return "true";
+                return true;
             }
 
-            return ResidentData.ToString();
+            return false;
         }
 
 
 
-        [HttpPut
-        ]
-        public async Task<ActionResult> updateResidentProfile([FromBody]Resident Resident)
+        [HttpPut]
+        public async Task<bool> updateResidentProfile([FromBody]Resident Resident)
         {
 
 
-            await context.update(Resident.residentEmaill, Resident);
-            return Ok(Resident);
+            bool flag = await context.update(Resident.residentEmaill, Resident);
+            return flag;
         }
     }
 }

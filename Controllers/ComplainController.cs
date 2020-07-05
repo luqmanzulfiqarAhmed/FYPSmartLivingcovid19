@@ -10,7 +10,7 @@ using smartLiving.Repostries;
 
 namespace smartLiving.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/Complain")]
     [ApiController]
     public class ComplainController : ControllerBase
     {
@@ -29,20 +29,39 @@ namespace smartLiving.Controllers
 
         }
         //http://localhost:5000/api/Complain/1       
-        [HttpGet("{id}", Name = "ComplainProfile")]
-        public async Task<string> getComplainData(string societyId)
+        [HttpGet("{data}", Name = "getComplainData")]
+        public async Task<string> getComplainData(string data)
         {
-            var ComplainData = await context.retrieve(societyId);
-            if (ComplainData == null)
-                return null;
+            if(data != null){
+            string[]credentials = data.Split(","); 
+            string email = "", sId="";
+            if (credentials != null)
+            {                             
+                sId = credentials[0];                                
+                email = credentials[1];
+            }
+            if(sId != "" ){
+                var ComplainData = await context.retrieveAll(sId);
+                if (ComplainData == null)
+                    return null;
             return JsonConvert.SerializeObject(ComplainData);
+            }
+            if(sId != "" && email != ""  ){
+
+                var ComplainData = await context.retrieve(sId,email);
+                if (ComplainData == null)
+                    return null;
+            return JsonConvert.SerializeObject(ComplainData);
+            }
+        }
+            return "data is null  ";
         }
 
         [HttpPost(Name = "ComplainRegister")]
         public async Task<String> registerComplain([FromBody]Complain Complain)
 
         {
-            var ComplainData = await context.retrieve(Complain.complaintId);
+            var ComplainData = await context.retrieveByComplainId(Complain.complaintId);
 
 
             ComplainData = JsonConvert.SerializeObject(ComplainData);
@@ -59,12 +78,12 @@ namespace smartLiving.Controllers
 
 
         [HttpPut]
-        public async Task<ActionResult> updateComplainProfile([FromBody]Complain Complain)
+        public async Task<Object> updateComplainProfile([FromBody]Complain Complain)
         {
 
 
-            await context.update(Complain.complaintId, Complain);
-            return Ok(Complain);
+            Object flag = await context.update(Complain.complaintId, Complain);
+            return flag;
         }
     }
 }

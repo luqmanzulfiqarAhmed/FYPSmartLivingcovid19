@@ -45,25 +45,52 @@ namespace smartLiving.Repostries
         public async Task<object> retrieveByEmail(string email)
         {
             var Resident = Builders<Resident>.Filter.Eq("residentEmaill", email);
-            return await collection.Find(Resident).ToListAsync();
+            return await collection.Find(Resident).SingleAsync();
+        }
+        public async Task<object> retrieveList(string email,string sId,string pId)
+        {
+            var Resident = Builders<Resident>.Filter.Eq("residentEmaill", email);
+            var bySId = Builders<Resident>.Filter.Eq("societyId", sId);
+            var byPId = Builders<Resident>.Filter.Eq("propertyId", pId);
+            var combineFilters = Builders<Resident>.Filter.And(bySId, byPId);
+            return await collection.Find(combineFilters).ToListAsync();
         }
         public async Task<object> retrieveBySidPid(string pId,string sId)
         {
             var bySId = Builders<Resident>.Filter.Eq("societyId", sId);
             var byPId = Builders<Resident>.Filter.Eq("propertyId", pId);
             var combineFilters = Builders<Resident>.Filter.And(bySId, byPId);
-            return await collection.Find(combineFilters).ToListAsync();
+            return await collection.Find(combineFilters).FirstOrDefaultAsync();
         }
-        public async Task<object> retrieveAll(string societyId)
+        public async Task<object> retrieveBySidPidEmail(string sId,string pId,string email)
+        {
+            var bySId = Builders<Resident>.Filter.Eq("societyId", sId);
+            var byPId = Builders<Resident>.Filter.Eq("propertyId", pId);
+            var Resident = Builders<Resident>.Filter.Eq("residentEmaill", email);
+            var combineFilters = Builders<Resident>.Filter.And(bySId, byPId,Resident);
+            var result = await collection.Find(combineFilters).FirstOrDefaultAsync();            
+            return result;
+        }
+        public async Task<object> retrieveBySid(string societyId)
         {
             var Resident = Builders<Resident>.Filter.Eq("societyId", societyId);
             return await collection.Find(Resident).ToListAsync();
         }
-
-        public async Task<object> update(string id, object Resident)
+public async Task<object> retrieveAll(string societyId)
         {
+            var Society = Builders<Resident>.Filter.Eq("societyId", societyId);
+            return await collection.Find(Society).ToListAsync();
+        }
+        public async Task<bool> update(string id, object Resident)
+        {
+            try{
             await collection.ReplaceOneAsync(ZZ => ZZ.residentEmaill == id, (Resident)Resident);
             return true;
+            }catch(Exception ex){
+                   return false; 
+
+            }
+            
         }
     
     }
