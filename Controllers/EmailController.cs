@@ -14,6 +14,7 @@ namespace smartLiving.Controllers
     public class EmailController : ControllerBase
     {
        
+       private readonly Notification context;
 
         public EmailController(Notification notification)
         {
@@ -21,11 +22,11 @@ namespace smartLiving.Controllers
         }
 
         [HttpPost(Name = "sendEmail")]
-        public async Task <bool> registerAdmin([FromBody]Notification notification)
+        public async Task <object> registerAdmin([FromBody]Notification notification)
 
         {            
             
-            bool flag = notification.sendEmail();
+            var flag = notification.sendEmail();
             return flag;
         }
                 

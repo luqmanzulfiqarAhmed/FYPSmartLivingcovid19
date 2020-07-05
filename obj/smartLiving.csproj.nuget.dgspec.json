@@ -1,30 +1,28 @@
 {
   "format": 1,
   "restore": {
-    "E:\\GIT\\smartLiving\\FYPSmartLivingcovid19\\smartLiving.csproj": {}
+    "C:\\Users\\luqma\\OneDrive\\Documents\\GitHub\\FYPSmartLivingcovid19\\smartLiving.csproj": {}
   },
   "projects": {
-    "E:\\GIT\\smartLiving\\FYPSmartLivingcovid19\\smartLiving.csproj": {
+    "C:\\Users\\luqma\\OneDrive\\Documents\\GitHub\\FYPSmartLivingcovid19\\smartLiving.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\GIT\\smartLiving\\FYPSmartLivingcovid19\\smartLiving.csproj",
+        "projectUniqueName": "C:\\Users\\luqma\\OneDrive\\Documents\\GitHub\\FYPSmartLivingcovid19\\smartLiving.csproj",
         "projectName": "smartLiving",
-        "projectPath": "E:\\GIT\\smartLiving\\FYPSmartLivingcovid19\\smartLiving.csproj",
-        "packagesPath": "C:\\Users\\luqman ahmed\\.nuget\\packages\\",
-        "outputPath": "E:\\GIT\\smartLiving\\FYPSmartLivingcovid19\\obj\\",
+        "projectPath": "C:\\Users\\luqma\\OneDrive\\Documents\\GitHub\\FYPSmartLivingcovid19\\smartLiving.csproj",
+        "packagesPath": "C:\\Users\\luqma\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\luqma\\OneDrive\\Documents\\GitHub\\FYPSmartLivingcovid19\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\luqman ahmed\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Users\\luqma\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp2.1"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
