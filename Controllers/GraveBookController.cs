@@ -39,7 +39,7 @@ namespace smartLiving.Controllers
             return JsonConvert.SerializeObject(adminData);        
         }
 
-        [HttpPost(Name = "GraveBookRegister")]
+        [HttpPost(Name = "registerGraveBook")]
         public async Task <bool > registerGraveBook([FromBody]GraveBooking GraveBooking)
 
         {            
