@@ -37,7 +37,8 @@ namespace smartLiving
                 using (var client = new SmtpClient())
                 {
                     await client.ConnectAsync("smtp.gmail.com", 587, false);
-                    await client.AuthenticateAsync("smartliving321@gmail.com","smart@living1122");
+                    //await client.AuthenticateAsync("smartliving321@gmail.com","smart@living1122");
+                    await client.AuthenticateAsync("smartliving321@gmail.com","nurtaantckhevhgy");
                     await client.SendAsync(message);
                     await client.DisconnectAsync(true);
                     //                client.ServerCertificateValidationCallback=();
