@@ -34,7 +34,7 @@ namespace smartLiving.Repostries
             var flag = await collection.DeleteOneAsync(announcement);    
             return flag;
             }catch(Exception ex){
-                return false + ex.Message;
+                return "false  " + ex.Message;
             }
         }
 

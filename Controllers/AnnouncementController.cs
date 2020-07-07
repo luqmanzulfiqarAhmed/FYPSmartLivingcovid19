@@ -68,9 +68,9 @@ namespace smartLiving.Controllers
         }
         [HttpDelete("{anouncementId}", Name = "deleteAnnouncement")]
         
-        public async Task<object> deleteAnnouncement(string anouncementId){
+        public async Task<Boolean> deleteAnnouncement(string anouncementId){
             
-            var  flag = await context.delete(anouncementId);
+            var  flag = (Boolean)await context.delete(anouncementId);
 
             return flag;
         }
