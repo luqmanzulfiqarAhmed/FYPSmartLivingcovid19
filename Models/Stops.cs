@@ -19,6 +19,8 @@ namespace smartLiving.Models
 
         [BsonElement("location")]
         public Location location;
+
+        
         public class Location {
             public Location() { }
             public string lat, lng;
