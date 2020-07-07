@@ -19,12 +19,13 @@ namespace smartLiving.Repostries
 
             dbContext = MongoDbContext.getMongoDbContext(config);//geting singletone object of database
             collection = dbContext.getDataBase().GetCollection<Admin>("Admin");//use singletone object to get database 
-            //and call that database to get collection of Admin
+            
         }
         private readonly IMongoCollection<Admin> collection;
 
         public async Task<object> retriveAllData()
         {            
+            
             return await collection.Find(x=>true).ToListAsync();
         }
 
