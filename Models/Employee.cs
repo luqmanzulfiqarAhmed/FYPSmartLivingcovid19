@@ -15,6 +15,10 @@ namespace smartLiving.Models
         public string societyId;
         [BsonElement("employeeEmail")]
         public string employeeEmail;
+
+        [BsonElement("employeePassword")]
+        public string employeePassword;
+
         [BsonElement("employeeFirstName")]
         public string employeeFirstName;
         [BsonElement("employeeLastName")]
