@@ -60,7 +60,7 @@ public async Task<object> retrieveByEmail(string sId,string email)
             var society= Builders<Employee>.Filter.Eq("societyId", sId);
             var Employee = Builders<Employee>.Filter.Eq("employeeEmail", email);
             var combineFilters = Builders<Employee>.Filter.And(society, Employee);
-            return await collection.Find(combineFilters).ToListAsync();
+            return await collection.Find(combineFilters).FirstOrDefaultAsync();
         }
         public async Task<object> retrieveAll(string societyId)
         {
