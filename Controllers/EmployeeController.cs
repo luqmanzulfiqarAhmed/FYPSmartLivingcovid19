@@ -38,7 +38,7 @@ namespace smartLiving.Controllers
             return JsonConvert.SerializeObject(EmployeeData);
         }
         [HttpGet("{societyId}/{department}", Name = "EmployeeProfiledepartment")]
-        public async Task<string> getEmployeeDataByDepartment(string societyId,string department)
+        public async Task<string> getEmployeeDataByDepartment(string societyId,[FromQuery]string department)
         {
             var EmployeeData = await context.retrieveByDepartment(societyId,department);
             if (EmployeeData == null)
