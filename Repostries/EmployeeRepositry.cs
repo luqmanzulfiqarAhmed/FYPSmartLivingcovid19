@@ -70,8 +70,12 @@ public async Task<object> retrieveByEmail(string sId,string email)
 
         public async Task<object> update(string id, object Employee)
         {
-            await collection.ReplaceOneAsync(ZZ => ZZ.employeeEmail == id, (Employee)Employee);
+            try{
+             await collection.ReplaceOneAsync(ZZ => ZZ.employeeEmail == id, (Employee)Employee);
             return true;
+            }catch(Exception ex){
+                    return false + ":" + ex.Message;
+            }
         }
     
     }

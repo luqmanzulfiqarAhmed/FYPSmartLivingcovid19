@@ -87,12 +87,12 @@ namespace smartLiving.Controllers
 
 
         [HttpPut]
-        public async Task<ActionResult> updateEmployeeProfile([FromBody]Employee Employee)
+        public async Task<object> updateEmployeeProfile([FromBody]Employee Employee)
         {
 
 
-            await context.update(Employee.employeeEmail, Employee);
-            return Ok(Employee);
+            var flag = context.update(Employee.employeeEmail, Employee);
+            return flag;
         }
     }
 }
