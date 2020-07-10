@@ -95,6 +95,7 @@ public async Task<Object> retrievePropertyBySidPid(string sId,string pId)
         }
         public async Task<Object> updateShop(string sId,string pId,Menue menue)
         {
+            Property prop = null;
             try{
                 var society = Builders<Property>.Filter.Eq("societyId", sId);
                 var Property = Builders<Property>.Filter.Eq("propertyId", pId);                
@@ -102,7 +103,8 @@ public async Task<Object> retrievePropertyBySidPid(string sId,string pId)
                 Task <Property> itemsTask =Task.Run(() =>( collection.Find(Property).FirstOrDefaultAsync()));
             //Property prop  = (Property)var;
             if(itemsTask !=null){    
-                Property prop  = itemsTask.Result;    
+                  prop= itemsTask.Result;    
+                if(prop !=null) {
             if(prop.Commercial !=null) {
                     if(prop.Commercial.shop != null){
                         prop.Commercial.shop.shopMenues.Add(menue);
@@ -117,6 +119,9 @@ public async Task<Object> retrievePropertyBySidPid(string sId,string pId)
                     else                                      
                          return pId+ " is not a commercial property";;
             }
+        }else{
+            return pId+ " is not a property :" + "item tasks: "+ itemsTask + "\n property: "+ prop;
+        }
         }catch(Exception ex){
                 return ex.Message;            
         }
