@@ -55,6 +55,14 @@ namespace smartLiving.Repostries
             
         }
 
+public async Task<object> retrieveByType( string societyId,string vType)
+        {
+            var society = Builders<Vehicle>.Filter.Eq("societyId", societyId);
+            var vehicle = Builders<Vehicle>.Filter.Eq("vehicleDiscription", vType);
+            var combineFilters = Builders<Vehicle>.Filter.And(vehicle, society);
+            return await collection.Find(combineFilters).ToListAsync();
+            
+        }
         public async Task<object> update(string id, object vehicle)
         {
             await collection.ReplaceOneAsync(ZZ => ZZ.vehicleId == id, (Vehicle)vehicle);
