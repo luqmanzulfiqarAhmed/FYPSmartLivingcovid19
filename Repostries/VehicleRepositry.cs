@@ -63,6 +63,14 @@ public async Task<object> retrieveByType( string societyId,string vType)
             return await collection.Find(combineFilters).ToListAsync();
             
         }
+        public async Task<object> retrieveByEmail( string societyId,string email)
+        {
+            var society = Builders<Vehicle>.Filter.Eq("societyId", societyId);
+            var emailData = Builders<Vehicle>.Filter.Eq("employeeEmail", email);
+            var combineFilters = Builders<Vehicle>.Filter.And( society,emailData);
+            return await collection.Find(combineFilters).SingleOrDefaultAsync();
+            
+        }
         public async Task<object> update(string id, object vehicle)
         {
             await collection.ReplaceOneAsync(ZZ => ZZ.vehicleId == id, (Vehicle)vehicle);

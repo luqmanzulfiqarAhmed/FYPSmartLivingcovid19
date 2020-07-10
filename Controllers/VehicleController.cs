@@ -31,24 +31,28 @@ namespace smartLiving.Controllers
         //     return JsonConvert.SerializeObject(vehichleData);
         // }
 
-        [HttpGet("{societyIdVtype}", Name = "getAllVehichleData")]
-        public async Task<string> getAllVehichleData(string societyIdVtype)
+        [HttpGet("{societyIdVtypeEmail}", Name = "getAllVehichleData")]
+        public async Task<string> getAllVehichleData(string societyIdVtypeEmail)
         {
-            string []id=societyIdVtype.Split(",");
+            string []id=societyIdVtypeEmail.Split(",");
             if(id !=null){   
-                if(!id[0].Equals("") && !id[1].Equals("")){
-                    var SocietyData = await context.retrieveByType(id[0],id[1]);
-                
-            if (SocietyData == null)
-                return null;
-            return JsonConvert.SerializeObject(SocietyData);
+                if(!id[0].Equals("") && id[1].Equals("") && !id[2].Equals("")){
+                    var SocietyData = await context.retrieveByEmail(id[0],id[2]);                
+                if (SocietyData == null)
+                    return null;
+                return JsonConvert.SerializeObject(SocietyData);
             }
-               if(!id[0].Equals("") && id[1].Equals("")){
-                    var SocietyData = await context.retrieve(id[0]);
-                
-            if (SocietyData == null)
-                return null;
-            return JsonConvert.SerializeObject(SocietyData);
+                if(!id[0].Equals("") && !id[1].Equals("") && id[2].Equals("")){
+                    var SocietyData = await context.retrieveByType(id[0],id[1]);                
+                if (SocietyData == null)
+                    return null;
+                return JsonConvert.SerializeObject(SocietyData);
+            }
+               if(!id[0].Equals("") && id[1].Equals("") && id[2].Equals("")){
+                    var SocietyData = await context.retrieve(id[0]);                
+                if (SocietyData == null)
+                    return null;
+                return JsonConvert.SerializeObject(SocietyData);
             }
             }
             return "parameter is null";
