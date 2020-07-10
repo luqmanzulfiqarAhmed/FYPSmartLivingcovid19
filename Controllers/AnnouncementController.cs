@@ -29,7 +29,7 @@ namespace smartLiving.Controllers
 
         }
         //http://localhost:5000/api/Announcement/1       
-        [HttpGet("{societyId}", Name = "AnnouncementProfile")]
+        [HttpGet("{societyId}", Name = "getAnnouncementData")]
         public async Task<string> getAnnouncementData(string societyId)
         {
             var AnnouncementData = await context.retrieveAll(societyId);
@@ -38,7 +38,7 @@ namespace smartLiving.Controllers
             return JsonConvert.SerializeObject(AnnouncementData);
         }
 
-        [HttpPost(Name = "AnnouncementRegister")]
+        [HttpPost(Name = "registerAnnouncement")]
         public async Task<String> registerAnnouncement([FromBody]Announcement Announcement)
 
         {
