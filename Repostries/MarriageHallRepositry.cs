@@ -31,10 +31,10 @@ namespace smartLiving.Repostries
             var Property = Builders<Property>.Filter.Eq("propertyId", pId);
             var society = Builders<Property>.Filter.Eq("societyId", sId);
             var combineFilters = Builders<Property>.Filter.And(society,Property);            
-            Task <Property> itemsTask =Task.Run(() =>( collection.Find(Property).FirstOrDefaultAsync() )) ;            
+            var itemsTask  = collection.Find(Property).FirstOrDefaultAsync() ;            
 
             if(itemsTask !=null){    
-                Property prop  = itemsTask.Result; 
+            Property prop  = itemsTask.Result;     
                 if(prop != null)   {
             if(prop.Commercial !=null){
                 MarriageHall marriageHallData = prop.Commercial.marriageHall;            
@@ -45,7 +45,7 @@ namespace smartLiving.Repostries
             }
             return null;
         }
-        public async Task<Object> updatemarriageHall(string sId,string pId,Menue menue)
+        public async Task<Object> updatemarriageHallMenue(string sId,string pId,MarriageHall marriageHall)
         {
             try{
                 var society = Builders<Property>.Filter.Eq("societyId", sId);
@@ -57,18 +57,10 @@ namespace smartLiving.Repostries
                 Property prop  = itemsTask.Result;    
             if(prop.Commercial !=null) {
                     if(prop.Commercial.marriageHall != null){
-                          if( prop.Commercial.marriageHall.menues != null){  
-                        prop.Commercial.marriageHall.menues.Add(menue);
-                            await collection.ReplaceOneAsync(ZZ => ZZ.propertyId == pId && 
+                     prop.Commercial.marriageHall = marriageHall;
+                        await collection.ReplaceOneAsync(ZZ => ZZ.propertyId == pId && 
                             ZZ.societyId == sId, prop);
-                        return prop;
-                          }else{
-                        //       prop.Commercial.marriageHall.menues = new Menue();
-                        //       prop.Commercial.marriageHall.menues.Add(menue);
-                        //     await collection.ReplaceOneAsync(ZZ => ZZ.propertyId == pId && 
-                        //     ZZ.societyId == sId, prop);
-                        // return "menue created";
-                          }
+                            return true;
                     }else{
                         return  pId+ " is not a marriage Hall"  ;
                     }
@@ -82,7 +74,8 @@ namespace smartLiving.Repostries
         }
         return false;
     }
+    
   
         
-    }
+}
 }

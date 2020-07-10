@@ -39,12 +39,12 @@ namespace smartLiving.Controllers
        
         
         [HttpPost( "{sIdPId}" ,Name = "postMariageHallProfile")]         
-        public async Task <Object> postMariageHallProfile( string sIdPId,[FromBody]Menue menue)
+        public async Task <Object> postMariageHallProfile( string sIdPId,[FromBody]MarriageHall marriageHall)
          {
-                  if(menue != null){
+                  if(marriageHall != null){
                 string []id=sIdPId.Split(",");
             if(id !=null && sIdPId.Contains(",")){                                 
-           Object flag = await context.updatemarriageHall(id[0],id[1], menue);
+           Object flag = await context.updatemarriageHallMenue(id[0],id[1], marriageHall);
             
             return flag;
             }            
@@ -59,16 +59,16 @@ namespace smartLiving.Controllers
         [HttpPut("{sIdPId}", Name = "updateMariageHallProfile")]        
         public async Task <Object> updateMariageHallProfile( string sIdPId,[FromBody]MarriageHall MariageHall)
          {
-        //      if(MariageHall != null){
-        //         string []id=sIdPId.Split(",");
-        //     if(id !=null && sIdPId.Contains(",")){                                 
-        //    Object flag = await context.updateMariageHall(id[0],id[1], MariageHall);
+             if(MariageHall != null){
+                string []id=sIdPId.Split(",");
+            if(id !=null && sIdPId.Contains(",")){                                 
+           Object flag = await context.updatemarriageHallMenue(id[0],id[1], MariageHall);
             
-        //     return flag;
-        //     }            
-        //     return "no comma detected";
-        //      }
-        //      return "MariageHall is null";
+            return flag;
+            }            
+            return "no comma detected";
+             }
+        
                 return JsonConvert.SerializeObject(MariageHall); 
         }
     }
