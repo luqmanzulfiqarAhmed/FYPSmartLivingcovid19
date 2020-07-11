@@ -24,12 +24,6 @@ namespace smartLiving.Controllers
 
         
         
-        // [HttpGet]
-        // public async Task<string> getTest(){
-
-        //     var vehichleData = await context.retrieveAll("SitaraSapna@123");
-        //     return JsonConvert.SerializeObject(vehichleData);
-        // }
 
         [HttpGet("{societyIdVtypeEmail}", Name = "getAllVehichleData")]
         public async Task<string> getAllVehichleData(string societyIdVtypeEmail)
