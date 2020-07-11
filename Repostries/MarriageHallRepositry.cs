@@ -51,7 +51,7 @@ namespace smartLiving.Repostries
                 var society = Builders<Property>.Filter.Eq("societyId", sId);
                 var Property = Builders<Property>.Filter.Eq("propertyId", pId);                
                 var combineFilters = Builders<Property>.Filter.And(society,Property);            
-                Task <Property> itemsTask =Task.Run(() =>( collection.Find(Property).FirstOrDefaultAsync()));
+                var itemsTask = collection.Find(Property).FirstOrDefaultAsync();
             //Property prop  = (Property)var;
             if(itemsTask !=null){    
                 Property prop  = itemsTask.Result;    
