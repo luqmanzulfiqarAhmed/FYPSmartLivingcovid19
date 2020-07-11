@@ -11,9 +11,9 @@ namespace smartLiving.Models
         
         
         [BsonElement("menues")]
-        public List<Menue> menues = new List<Menue>();
+        public List<Menue> menues ;
         [BsonElement("Halls")]
-        public List<Hall> halls = new List<Hall>();
+        public List<Hall> halls ;
         
         public MarriageHall(){}
     }
