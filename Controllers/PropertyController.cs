@@ -23,7 +23,7 @@ namespace smartLiving.Controllers
         [HttpDelete]
         public async Task<Object> del(){
 
-var PropertyData = await context.delete("Property@C1087");
+             var PropertyData = await context.delete("Property@C1087");
 
             return PropertyData;
         }
