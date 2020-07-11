@@ -35,10 +35,14 @@ namespace smartLiving.Repostries
 
         public async Task<object> insert(object obj)
         {
+            try{
             GoodsOrdering GoodsOrdering = (GoodsOrdering)obj;
 
             await collection.InsertOneAsync((GoodsOrdering)GoodsOrdering);
             return true;
+            }catch(Exception ex){
+                return false;
+            }
 
         }
 

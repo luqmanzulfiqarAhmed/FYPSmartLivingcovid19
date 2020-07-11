@@ -39,7 +39,7 @@ namespace smartLiving.Controllers
         }
 
         [HttpPost(Name = "GoodsOrderingRegister")]
-        public async Task<String> registerGoodsOrdering([FromBody]GoodsOrdering GoodsOrdering)
+        public async Boolean registerGoodsOrdering([FromBody]GoodsOrdering GoodsOrdering)
 
         {
             var GoodsOrderingData = await context.retrieve(GoodsOrdering.orderId);
@@ -48,9 +48,9 @@ namespace smartLiving.Controllers
             GoodsOrderingData = JsonConvert.SerializeObject(GoodsOrderingData);
             if (GoodsOrderingData.ToString() == "[]")
             {
-                await context.insert(GoodsOrdering);
+                Boolean flag = await context.insert(GoodsOrdering);
 
-                return "true";
+                return flag ;
             }
 
             return GoodsOrderingData.ToString();
