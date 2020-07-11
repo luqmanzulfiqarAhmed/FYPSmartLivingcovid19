@@ -47,35 +47,50 @@ namespace smartLiving.Repostries
         }
         public async Task<Object> updatemarriageHallMenue(string sId,string pId,MarriageHall marriageHall)
         {
+            Property prop = null;
             try{
                 var society = Builders<Property>.Filter.Eq("societyId", sId);
                 var Property = Builders<Property>.Filter.Eq("propertyId", pId);                
-                var combineFilters = Builders<Property>.Filter.And(society,Property);            
-                var itemsTask = collection.Find(Property).FirstOrDefaultAsync();
-            //Property prop  = (Property)var;
-            if(itemsTask !=null){    
-                Property prop  = itemsTask.Result;    
+                var combineFilters = Builders<Property>.Filter.And(society,Property);                                                
+                var result  = collection.Find(Property).FirstOrDefaultAsync();
+                            
+                
+        
+            if(result !=null){    
+                  prop = result.Result;    
+                if(prop !=null) {
             if(prop.Commercial !=null) {
-                    if(prop.Commercial.marriageHall != null){
-                     prop.Commercial.marriageHall = marriageHall;
-                        await collection.ReplaceOneAsync(ZZ => ZZ.propertyId == pId && 
+                    if(prop.Commercial.marriageHall != null){                        
+                     //   if(prop.Commercial.shop.shopMenues[lastIndex].menueId != shop.shopMenues[shop.shopMenues.Count].menueId)
+                        prop.Commercial.marriageHall = marriageHall;
+                            await collection.ReplaceOneAsync(ZZ => ZZ.propertyId == pId && 
                             ZZ.societyId == sId, prop);
                             return true;
+                        //}else{
+                        //    return shop.shopMenues[shop.shopMenues.Count-1].menueId + " : menue id already exist";
+                        //}
                     }else{
-                        return  pId+ " is not a marriage Hall"  ;
+                        return  pId+ " is not a marriage hall"  ;
                     }
                         
-                                      }
+                        }
                     else                                      
                          return pId+ " is not a commercial property";;
             }
+        }else{
+            return pId+ " is not a property :"  + "\n property: "+ prop;
+        }
         }catch(Exception ex){
                 return ex.Message;            
         }
         return false;
     }
     
+
+            
+    }
+    
   
         
 }
-}
+
