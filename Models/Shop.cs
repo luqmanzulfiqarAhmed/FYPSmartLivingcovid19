@@ -16,7 +16,7 @@ namespace smartLiving.Models
         [BsonElement("deleiveryCharges")]
         public string deleiveryCharges = "50";
         [BsonElement("shopMenues")]
-        public List<Menue> shopMenues ;
+        public List<Menue> shopMenues =new List<Menue>() ;
 
     }
 }

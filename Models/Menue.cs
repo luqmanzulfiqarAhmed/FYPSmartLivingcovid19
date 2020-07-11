@@ -17,7 +17,7 @@ namespace smartLiving.Models
         [BsonElement("category")]
         public String category;
         [BsonElement("items")]
-        public List<Item> items ;
+        public List<Item> items=new List<Item>() ;
         public Menue(){}
     }
 }

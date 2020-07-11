@@ -15,10 +15,20 @@ namespace smartLiving.Controllers
     {
         private readonly PropertyRepositry context;
 
+
         public PropertyController(PropertyRepositry PropertyRepositry)
         {
             context = PropertyRepositry;
         }
+        [HttpDelete]
+        public async Task<Object> del(){
+
+var PropertyData = await context.delete("Property@C1087");
+
+            return PropertyData;
+        }
+
+
         [HttpGet]
         public async Task<string> getAllPropertysData()
         {

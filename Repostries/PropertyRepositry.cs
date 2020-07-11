@@ -25,12 +25,14 @@ namespace smartLiving.Repostries
         {
             return await collection.Find(x => true).ToListAsync();
         }
+        
 
         //not defined yet because we will not delete in server we only disable particular account
         public async Task<object> delete(string id)
         {
 
-            return true;
+            var byPId = Builders<Property>.Filter.Eq("propertyId", id);            
+             return await collection.DeleteOneAsync(byPId);  
         }
 
         public async Task<string> insert(Property[] properties)
