@@ -39,7 +39,7 @@ namespace smartLiving.Controllers
         }
 
         [HttpPost(Name = "GoodsOrderingRegister")]
-        public async Boolean registerGoodsOrdering([FromBody]GoodsOrdering GoodsOrdering)
+        public async Task<Boolean> registerGoodsOrdering([FromBody]GoodsOrdering GoodsOrdering)
 
         {
             var GoodsOrderingData = await context.retrieve(GoodsOrdering.orderId);
@@ -50,10 +50,10 @@ namespace smartLiving.Controllers
             {
                 Boolean flag = await context.insert(GoodsOrdering);
 
-                return flag ;
+                return flag;
             }
 
-            return GoodsOrderingData.ToString();
+            return false;
         }
 
 

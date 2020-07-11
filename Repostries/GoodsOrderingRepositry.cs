@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace smartLiving.Repostries
 {
-    public class GoodsOrderingRepositry: InterfaceDataBase
+    public class GoodsOrderingRepositry
     {
         private MongoDbContext dbContext = null;
         public GoodsOrderingRepositry(IConfiguration config)
@@ -33,7 +33,7 @@ namespace smartLiving.Repostries
             return true;
         }
 
-        public async Task<object> insert(object obj)
+        public async Task<Boolean> insert(object obj)
         {
             try{
             GoodsOrdering GoodsOrdering = (GoodsOrdering)obj;
