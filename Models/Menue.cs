@@ -8,6 +8,9 @@ namespace smartLiving.Models
     [BsonIgnoreExtraElements]
     public class Menue
     {
+        
+        [BsonElement("menueId")]
+        public String menueId;
 
         [BsonElement("priceOfMenue")]
         public String priceOfMenue;
