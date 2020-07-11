@@ -65,13 +65,16 @@ public async Task<Object> retrievePropertyBySidPid(string sId,string pId)
             var Property = Builders<Property>.Filter.Eq("propertyId", pId);
             var society = Builders<Property>.Filter.Eq("societyId", sId);
             var combineFilters = Builders<Property>.Filter.And(society,Property);            
-            Task <Property> itemsTask =Task.Run(() =>( collection.Find(Property).FirstOrDefaultAsync() )) ;            
+            var itemsTask =collection.Find(Property).FirstOrDefaultAsync()  ;            
 
             if(itemsTask !=null){    
             Property prop  = itemsTask.Result;    
+            if(prop!=null){
             if(prop.Commercial !=null)        {
             Shop shopData = prop.Commercial.shop;            
             return shopData;}
+            }
+            return null;
             }
             return null;
         }
