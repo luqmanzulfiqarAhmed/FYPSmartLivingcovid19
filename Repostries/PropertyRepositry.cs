@@ -126,14 +126,14 @@ public async Task<Object> retrievePropertyBySidPid(string sId,string pId)
             if(prop.Commercial !=null) {
                     if(prop.Commercial.shop != null){
                         int lastIndex = prop.Commercial.shop.shopMenues.Count;
-                        if(prop.Commercial.shop.shopMenues[lastIndex].menueId != shop.shopMenues[shop.shopMenues.Count].menueId)
-                        {prop.Commercial.shop = shop;
+                     //   if(prop.Commercial.shop.shopMenues[lastIndex].menueId != shop.shopMenues[shop.shopMenues.Count].menueId)
+                        prop.Commercial.shop = shop;
                             await collection.ReplaceOneAsync(ZZ => ZZ.propertyId == pId && 
                             ZZ.societyId == sId, prop);
                             return true;
-                        }else{
-                            return shop.shopMenues[shop.shopMenues.Count-1].menueId + " : menue id already exist";
-                        }
+                        //}else{
+                        //    return shop.shopMenues[shop.shopMenues.Count-1].menueId + " : menue id already exist";
+                        //}
                     }else{
                         return  pId+ " is not a shop"  ;
                     }
