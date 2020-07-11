@@ -28,15 +28,7 @@ namespace smartLiving.Controllers
             return JsonConvert.SerializeObject(EmployeeData) ;
 
         }
-        //http://localhost:5000/api/Employee/1       
-        // [HttpGet("{societyId}", Name = "EmployeeProfile")]
-        // public async Task<string> getEmployeeData(string societyId)
-        // {
-        //     var EmployeeData = await context.retrieveAll(societyId);
-        //     if (EmployeeData == null)
-        //         return null;
-        //     return JsonConvert.SerializeObject(EmployeeData);
-        // }
+        
         [HttpGet("{societyId}/{department}", Name = "EmployeeProfiledepartment")]
         public async Task<string> getEmployeeDataByDepartment(string societyId,string department)
         {
