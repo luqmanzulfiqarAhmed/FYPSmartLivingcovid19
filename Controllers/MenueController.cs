@@ -33,7 +33,7 @@ namespace smartLiving.Controllers
         }
 
         
-        [HttpGet("{sId},{pId}", Name = "getShopData")]
+        [HttpGet("{sId}/{pId}", Name = "getShopData")]
         public async Task<Object> getShopData(string sId,string pId)
         {
             var ShopData = await context.retrieveShop(sId,pId);
@@ -45,12 +45,12 @@ namespace smartLiving.Controllers
        
         
         [HttpPost( "{sIdPId}" ,Name = "postShopProfile")]         
-        public async Task <Object> postShopProfile( string sIdPId,[FromBody]Menue menue)
+        public async Task <Object> postShopProfile( string sIdPId,[FromBody]Shop shop)
          {
-                  if(menue != null){
+                  if(shop != null){
                 string []id=sIdPId.Split(",");
             if(id !=null && sIdPId.Contains(",")){                                 
-           Object flag = await context.updateShop(id[0],id[1], menue);
+           Object flag = await context.updateShop(id[0],id[1], shop);
             
             return flag;
             }            
