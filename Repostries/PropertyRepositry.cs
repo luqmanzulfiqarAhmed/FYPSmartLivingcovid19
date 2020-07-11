@@ -138,7 +138,7 @@ public async Task<Object> retrievePropertyBySidPid(string sId,string pId)
                         return  pId+ " is not a shop"  ;
                     }
                         
-                                      }
+                        }
                     else                                      
                          return pId+ " is not a commercial property";;
             }
