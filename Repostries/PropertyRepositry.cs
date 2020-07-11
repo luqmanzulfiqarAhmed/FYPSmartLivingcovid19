@@ -125,7 +125,7 @@ public async Task<Object> retrievePropertyBySidPid(string sId,string pId)
                 if(prop !=null) {
             if(prop.Commercial !=null) {
                     if(prop.Commercial.shop != null){
-                        int lastIndex = prop.Commercial.shop.shopMenues.Count-1;
+                        int lastIndex = prop.Commercial.shop.shopMenues.Count;
                         if(prop.Commercial.shop.shopMenues[lastIndex].menueId != shop.shopMenues[shop.shopMenues.Count].menueId)
                         {prop.Commercial.shop = shop;
                             await collection.ReplaceOneAsync(ZZ => ZZ.propertyId == pId && 
