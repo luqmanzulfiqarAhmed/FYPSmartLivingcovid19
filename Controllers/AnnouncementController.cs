@@ -70,7 +70,7 @@ namespace smartLiving.Controllers
         
         public async Task<Boolean> deleteAnnouncement(string anouncementId){
             
-            var  flag = (Boolean)await context.delete(anouncementId);
+            Boolean  flag = await context.delete(anouncementId);
 
             return flag;
         }

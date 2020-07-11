@@ -27,14 +27,14 @@ namespace smartLiving.Repostries
         }
 
         //not defined yet because we will not delete in server we only disable particular account
-        public async Task<object> delete(string id)
+        public async Task<Boolean> delete(string id)
         {
             try {
             var announcement = Builders<Announcement>.Filter.Eq("anouncementId", id);
             var flag = await collection.DeleteOneAsync(announcement);    
-            return flag;
+            return true;
             }catch(Exception ex){
-                return "false  " + ex.Message;
+                return false;
             }
         }
 
