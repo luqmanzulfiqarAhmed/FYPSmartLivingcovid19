@@ -33,12 +33,12 @@ namespace smartLiving.Repostries
             return true;
         }
 
-        public async Task<Boolean> insert(object obj)
+        public async Task<Boolean> insert(GoodsOrdering obj)
         {
             try{
-            GoodsOrdering GoodsOrdering = (GoodsOrdering)obj;
+            
 
-            await collection.InsertOneAsync((GoodsOrdering)GoodsOrdering);
+            await collection.InsertOneAsync(obj);
             return true;
             }catch(Exception ex){
                 return false;
@@ -58,10 +58,14 @@ namespace smartLiving.Repostries
             return await collection.Find(GoodsOrdering).ToListAsync();
         }
 
-        public async Task<object> update(string id, object GoodsOrdering)
+        public async Task<Boolean> update(string id, GoodsOrdering GoodsOrdering)
         {
-            await collection.ReplaceOneAsync(ZZ => ZZ.orderId == id, (GoodsOrdering)GoodsOrdering);
+            try{
+            await collection.ReplaceOneAsync(ZZ => ZZ.orderId == id, GoodsOrdering);
             return true;
+            }catch(Exception ex){
+                return false;
+            }
         }
     }
 }

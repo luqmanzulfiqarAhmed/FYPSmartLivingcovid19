@@ -59,12 +59,12 @@ namespace smartLiving.Controllers
 
 
         [HttpPut]
-        public async Task<ActionResult> updateGoodsOrderingProfile([FromBody]GoodsOrdering GoodsOrdering)
+        public async Task<Boolean> updateGoodsOrderingProfile([FromBody]GoodsOrdering GoodsOrdering)
         {
 
 
-            await context.update(GoodsOrdering.orderId, GoodsOrdering);
-            return Ok(GoodsOrdering);
+            Boolean flag= await context.update(GoodsOrdering.orderId, GoodsOrdering);
+            return flag;
         }
     }
 }
