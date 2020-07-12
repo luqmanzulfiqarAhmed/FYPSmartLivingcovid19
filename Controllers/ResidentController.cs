@@ -20,14 +20,14 @@ namespace smartLiving.Controllers
         {
             context = ResidentRepositry;
         }
-        [HttpGet]
-        public async Task<string> getAllResidentsData()
-        {
+        // [HttpGet]
+        // public async Task<string> getAllResidentsData()
+        // {
 
-            var ResidentData = await context.retriveAllData();
-            return JsonConvert.SerializeObject(ResidentData)+"in all" ;
+        //     var ResidentData = await context.retriveAllData();
+        //     return JsonConvert.SerializeObject(ResidentData) ;
 
-        }
+        // }
         //http://localhost:5000/api/Resident/1       
         [HttpGet("{data}", Name = "getResidentData")]
         public async Task<string> getResidentData(string data)
