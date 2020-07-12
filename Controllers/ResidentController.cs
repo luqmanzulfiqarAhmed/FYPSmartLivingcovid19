@@ -70,8 +70,7 @@ namespace smartLiving.Controllers
             }
             return "no response";
             
-        }
-        
+        }        
         [HttpPost(Name = "ResidentRegister")]
         public async Task<bool> registerResident([FromBody]Resident Resident)
 
