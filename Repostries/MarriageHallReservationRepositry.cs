@@ -21,9 +21,17 @@ namespace smartLiving.Repostries
         }
         private readonly IMongoCollection<MarriageHallReservation> collection;
 
-        public async Task<object> retriveAllData()
+        public async Task<MarriageHallReservation> retriveAllData(string sid,string hid)
         {
-            return await collection.Find(x => true).ToListAsync();
+            var society = Builders<MarriageHallReservation>.Filter.Eq("societyId", sid);        
+            
+            var property = Builders<MarriageHallReservation>.Filter.Eq("hallReservationId", hid);
+
+            var combineFilters = Builders<MarriageHallReservation>.Filter.And(society,property);
+            
+             var result = collection.Find(combineFilters).FirstOrDefaultAsync();
+            MarriageHallReservation hallReservations = result.Result;
+            return hallReservations;
         }
 
         //not defined yet because we will not delete in server we only disable particular account

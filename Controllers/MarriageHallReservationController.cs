@@ -21,14 +21,14 @@ namespace smartLiving.Controllers
             context = MarriageHallRepositry;
         }
         // [HttpGet]
-        [HttpGet( Name = "getAllMarriageHallsData")]
-        // public async Task<string> getAllMarriageHallsData()
-        // {
+        [HttpGet("{sId}/{rId}", Name = "getAllMarriageHallsData")]
+        public async Task<string> getAllMarriageHallsData(string sId,string rId)
+        {
 
-        //     var MarriageHallData = await context.retriveAllData();
-        //     return JsonConvert.SerializeObject(MarriageHallData);
+            var MarriageHallData = await context.retriveAllData(sId,rId);
+            return JsonConvert.SerializeObject(MarriageHallData);
 
-        // }
+        }
         //http://localhost:5000/api/MarriageHallReservation/1       
         [HttpGet("{sIdPidRemail}", Name = "getMarriageHallData")]
         public async Task<List<MarriageHallReservation>> getMarriageHallData(string sIdPidRemail)
