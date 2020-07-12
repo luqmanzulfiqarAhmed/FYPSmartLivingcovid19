@@ -61,7 +61,6 @@ namespace smartLiving.Controllers
 
         {                                    
                 await context.insert(MarriageHallReservation);
-
                     return true;
             
 
