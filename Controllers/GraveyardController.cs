@@ -34,31 +34,16 @@ namespace smartLiving.Controllers
 
         
         [HttpGet("{sId}", Name = "getGraveyardData")]
-        public async Task<String> getGraveyardData(string sId)
+        public async Task<string> getGraveyardData(string sId)
         {
-            var ShopData = await context.retrieveGraveyard(sId);
-            if (ShopData == null)
+            var graveyardData = await context.retrieveGraveyard(sId);
+            if (graveyardData == null)
                 return null;
-            return JsonConvert.SerializeObject(ShopData);        
+            return JsonConvert.SerializeObject(graveyardData);        
         }
 
        
 
-        [HttpPut("{sIdPId}", Name = "updateShopProfile")]        
-        public async Task <Object> updateShopProfile( string sIdPId,[FromBody]Shop Shop)
-         {
-        //      if(Shop != null){
-        //         string []id=sIdPId.Split(",");
-        //     if(id !=null && sIdPId.Contains(",")){                                 
-        //    Object flag = await context.updateShop(id[0],id[1], Shop);
-            
-        //     return flag;
-        //     }            
-        //     return "no comma detected";
-        //      }
-        //      return "shop is null";
-                return JsonConvert.SerializeObject(Shop); 
-        }
     }
 }
 

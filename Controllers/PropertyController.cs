@@ -41,6 +41,7 @@ namespace smartLiving.Controllers
         [HttpGet("{data}", Name = "getPropertyData")]
         public async Task<string> getPropertyData(  string data)
         {
+            
                 string []id=data.Split(",");
             if(id !=null){                 
                 if(!id[0].Equals("") && id[1].Equals(""))

@@ -80,16 +80,16 @@ public async Task<Object> retrievePropertyBySidPid(string sId,string pId)
             }
             return null;
         }
- public async Task<Property> retrieveGraveyard(string sId)
+ public async Task<List<Property>> retrieveGraveyard(string sId)
 
         {
             
             var society = Builders<Property>.Filter.Eq("societyId", sId);
             var Property = Builders<Property>.Filter.Eq("PropertyType", "Graveyard");
             var combineFilters = Builders<Property>.Filter.And(society,Property);            
-            var itemsTask =collection.Find(Property).FirstOrDefaultAsync()  ;            
-                Property graveYard = itemsTask.Result;
-                return graveYard;
+            var itemsTask =collection.Find(Property).ToListAsync()  ;            
+               List<Property> prop =itemsTask.Result;
+                return prop;
             
         }
         public async Task<Object> retrieveAll(string societyId)
