@@ -42,9 +42,9 @@ namespace smartLiving.Repostries
 
         }
 
-        public async Task<object> retrieve(string pId)
+        public async Task<object> retrieve(string sId)
         {
-            var GraveBooking = Builders<GraveBooking>.Filter.Eq("graveBookId", pId);
+            var GraveBooking = Builders<GraveBooking>.Filter.Eq("societyId", sId);
             return await collection.Find(GraveBooking).ToListAsync();
         }
 
