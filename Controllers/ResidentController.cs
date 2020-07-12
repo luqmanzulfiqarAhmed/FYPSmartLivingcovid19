@@ -68,8 +68,7 @@ namespace smartLiving.Controllers
                 return null ;
             return JsonConvert.SerializeObject(ResidentDataByIds);
             }
-            return "no response";
-            
+            return "no response";            
         }
         
         [HttpPost(Name = "ResidentRegister")]
