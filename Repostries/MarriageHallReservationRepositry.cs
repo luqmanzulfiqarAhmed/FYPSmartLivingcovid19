@@ -70,10 +70,14 @@ public async Task<List<MarriageHallReservation>> retrieveBySidPid(string sId,str
             return await collection.Find(MarriageHallReservation).ToListAsync();
         }
 
-        public async Task<object> update(string id, object MarriageHallReservation)
+        public async Task<Boolean> update(string id, MarriageHallReservation obj)
         {
-            await collection.ReplaceOneAsync(ZZ => ZZ.hallReservationId == id, (MarriageHallReservation)MarriageHallReservation);
+            try{
+            await collection.ReplaceOneAsync(ZZ => ZZ.hallReservationId == id, obj);
             return true;
+            }catch(Exception ex){
+                    return false;
+            }
         }
 
     }
