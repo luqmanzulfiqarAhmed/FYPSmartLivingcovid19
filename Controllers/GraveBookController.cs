@@ -43,18 +43,16 @@ namespace smartLiving.Controllers
         public async Task <bool > registerGraveBook([FromBody]GraveBooking GraveBooking)
 
         {            
-            var adminData = await context.retrieve(GraveBooking.graveBookId);
+            
                                 
 
-            adminData= JsonConvert.SerializeObject(adminData);
-            if (adminData.ToString() == "[]")
-            {
+            
+            
+            
                  await context.insert(GraveBooking);                 
                  
                  return true;
-            }
             
-            return false;
         }
          
 

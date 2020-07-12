@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace smartLiving.Repostries
 {
-    public class GraveBookingRepositry : InterfaceDataBase
+    public class GraveBookingRepositry 
     {
         private MongoDbContext dbContext = null;
         public GraveBookingRepositry(IConfiguration config)
@@ -33,12 +33,20 @@ namespace smartLiving.Repostries
             return true;
         }
 
-        public async Task<object> insert(object obj)
+        public async Task<object> insert(GraveBooking obj)
         {
-            GraveBooking GraveBooking = (GraveBooking)obj;
+            
 
-            await collection.InsertOneAsync((GraveBooking)GraveBooking);
-            return true;
+            
+            
+            try{
+                 await collection.InsertOneAsync(obj);
+                 
+                 return true;
+            }catch(Exception ex){
+            
+            return false;
+            }
 
         }
 
