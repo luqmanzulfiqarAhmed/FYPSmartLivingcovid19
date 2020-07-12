@@ -30,9 +30,9 @@ namespace smartLiving.Models
         [BsonElement("taskDateTime")]
         public string taskDateTime;
         [BsonElement("taskStatus")]
-        public string taskStatus;//pending, resolved
-        [BsonElement("taskType")]
-        public string taskType;//ambulance or electrician or firebrigade
+        public string taskStatus = "Pending";//pending, resolved
+        [BsonElement("taskSubject")]
+        public string taskSubject;//ambulance or electrician or firebrigade
         [BsonElement("taskLocation")]
         public Location taskLocation;
         [BsonElement("taskId")]

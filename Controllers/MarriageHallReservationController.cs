@@ -20,40 +20,55 @@ namespace smartLiving.Controllers
         {
             context = MarriageHallRepositry;
         }
-        [HttpGet]
-        public async Task<string> getAllMarriageHallsData()
-        {
+        // [HttpGet]
+        [HttpGet( Name = "getAllMarriageHallsData")]
+        // public async Task<string> getAllMarriageHallsData()
+        // {
 
-            var MarriageHallData = await context.retriveAllData();
-            return JsonConvert.SerializeObject(MarriageHallData);
+        //     var MarriageHallData = await context.retriveAllData();
+        //     return JsonConvert.SerializeObject(MarriageHallData);
 
-        }
+        // }
         //http://localhost:5000/api/MarriageHallReservation/1       
-        [HttpGet("{id}", Name = "MarriageHallProfile")]
-        public async Task<string> getMarriageHallData(string societyId)
+        [HttpGet("{sIdPidRemail}", Name = "getMarriageHallData")]
+        public async Task<List<MarriageHallReservation>> getMarriageHallData(string sIdPidRemail)
         {
-            var MarriageHallData = await context.retrieve(societyId);
-            if (MarriageHallData == null)
+            //string []id=sIdPidRemail.Split(",");
+                
+                     string []id=sIdPidRemail.Split(",");
+                    if(id[0]!= null && id[1] == "" && id[2]!=null){
+                        var reserve = context.retrieveBySidPidrEmail(id[0],id[2]);
+                        List<MarriageHallReservation> hallReservations = reserve.Result;
+                            return hallReservations;
+                    }
+                    if(id[0]!= null && id[1]!=null && id[2] == ""){
+                        var reserve2 = context.retrieveBySidPid(id[0],id[1]) ;
+                        List<MarriageHallReservation> hallReservations = reserve2.Result;
+                            return hallReservations;
+                    }
+                
+                
                 return null;
-            return JsonConvert.SerializeObject(MarriageHallData);
+             
+            //  var reserve2 = context.retrieveBySidPidrEmail(id[0],id[1],id[2]);
+            // List<MarriageHallReservation> hallReservations = reserve2.Result;
+            //     return hallReservations;
+            
         }
 
         [HttpPost(Name = "MarriageHallRegister")]
-        public async Task<String> registerMarriageHall([FromBody]MarriageHallReservation MarriageHallReservation)
+        public async Task<Boolean> registerMarriageHall([FromBody]MarriageHallReservation MarriageHallReservation)
 
         {
-            var MarriageHallData = await context.retrieve(MarriageHallReservation.hallReservationId);
-
-
-            MarriageHallData = JsonConvert.SerializeObject(MarriageHallData);
-            if (MarriageHallData.ToString() == "[]")
-            {
+            
+            
+            
                 await context.insert(MarriageHallReservation);
 
-                return "true";
-            }
+                    return true;
+            
 
-            return MarriageHallData.ToString();
+            
         }
 
 

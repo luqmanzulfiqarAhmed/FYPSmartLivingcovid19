@@ -48,16 +48,16 @@ namespace smartLiving.Controllers
             {
                 await context.insert(EmergencyTaskResponse);
 
-                if (EmergencyTaskResponse.taskType.Equals("MedicalEmergency"))
-                {
-                    var vehiclesAmbulance = await context.getVehichles("Ambulance");
-                    return JsonConvert.SerializeObject(vehiclesAmbulance);
-                }
-                if (EmergencyTaskResponse.taskType.Equals("FireEmergency"))
-                {
-                    var vehiclesFireBrigade = await context.getVehichles("Fire Brigade");
-                    return JsonConvert.SerializeObject(vehiclesFireBrigade);
-                }
+                // if (EmergencyTaskResponse.taskType.Equals("MedicalEmergency"))
+                // {
+                //     var vehiclesAmbulance = await context.getVehichles("Ambulance");
+                //     return JsonConvert.SerializeObject(vehiclesAmbulance);
+                // }
+                // if (EmergencyTaskResponse.taskType.Equals("FireEmergency"))
+                // {
+                //     var vehiclesFireBrigade = await context.getVehichles("Fire Brigade");
+                //     return JsonConvert.SerializeObject(vehiclesFireBrigade);
+                // }
 
             }
             return null;

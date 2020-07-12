@@ -24,6 +24,13 @@ namespace smartLiving.Models
 
         [BsonElement("propertyId")]
         public String propertyId;
+        
+        [BsonElement("graveYardName")]
+        public String graveyardName;
+        
+        [BsonElement("graveyardAddress")]
+        public String graveyardAddress;
+
 
         [BsonElement("graveType")]
         public string graveType;//adult child => (male,female)

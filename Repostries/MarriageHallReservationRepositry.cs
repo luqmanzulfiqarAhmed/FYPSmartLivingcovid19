@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace smartLiving.Repostries
 {
-    public class MarriageHallReservationRepositry : InterfaceDataBase
+    public class MarriageHallReservationRepositry 
     {
         private MongoDbContext dbContext = null;
         public MarriageHallReservationRepositry(IConfiguration config)
@@ -42,12 +42,28 @@ namespace smartLiving.Repostries
 
         }
 
-        public async Task<object> retrieve(string pId)
+        public async Task<List<MarriageHallReservation>> retrieveBySidPidrEmail(string sId,string rEmail)
         {
-            var MarriageHallReservation = Builders<MarriageHallReservation>.Filter.Eq("hallReservationId", pId);
-            return await collection.Find(MarriageHallReservation).ToListAsync();
+            var society = Builders<MarriageHallReservation>.Filter.Eq("societyId", sId);        
+            
+            var Email = Builders<MarriageHallReservation>.Filter.Eq("residentEmail", rEmail);
+            var combineFilters = Builders<MarriageHallReservation>.Filter.And(society,Email);
+            
+             var result = collection.Find(combineFilters).ToListAsync();
+            List<MarriageHallReservation> hallReservations = result.Result;
+            return hallReservations;
         }
-
+public async Task<List<MarriageHallReservation>> retrieveBySidPid(string sId,string pId)
+        {
+            var society = Builders<MarriageHallReservation>.Filter.Eq("societyId", sId);        
+            var property = Builders<MarriageHallReservation>.Filter.Eq("marriageHallPropertyId", pId);
+            
+            var combineFilters = Builders<MarriageHallReservation>.Filter.And(society, property);
+            
+             var result = collection.Find(combineFilters).ToListAsync();
+            List<MarriageHallReservation> hallReservations = result.Result;
+            return hallReservations;
+        }
         public async Task<object> retrieveAll(string societyId)
         {
             var MarriageHallReservation = Builders<MarriageHallReservation>.Filter.Eq("societyId", societyId);
