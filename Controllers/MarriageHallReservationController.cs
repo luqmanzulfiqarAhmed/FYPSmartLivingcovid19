@@ -59,10 +59,7 @@ namespace smartLiving.Controllers
         [HttpPost(Name = "MarriageHallRegister")]
         public async Task<Boolean> registerMarriageHall([FromBody]MarriageHallReservation MarriageHallReservation)
 
-        {
-            
-            
-            
+        {                                    
                 await context.insert(MarriageHallReservation);
 
                     return true;
