@@ -29,10 +29,11 @@ namespace smartLiving.Controllers
 
         }
         //http://localhost:5000/api/GoodsOrdering/1       
-        [HttpGet("{id}", Name = "GoodsOrderingProfile")]
-        public async Task<string> getGoodsOrderingData(string societyId)
+        [HttpGet("{sId}/{Pid}", Name = "GoodsOrderingProfile")]
+        public async Task<string> getGoodsOrderingData(string sId,string pId)
         {
-            var GoodsOrderingData = await context.retrieve(societyId);
+
+            var GoodsOrderingData = await context.retrieve(sId,pId);
             if (GoodsOrderingData == null)
                 return null;
             return JsonConvert.SerializeObject(GoodsOrderingData);
@@ -42,16 +43,16 @@ namespace smartLiving.Controllers
         public async Task<Boolean> registerGoodsOrdering([FromBody]GoodsOrdering GoodsOrdering)
 
         {
-            var GoodsOrderingData = await context.retrieve(GoodsOrdering.orderId);
+            
 
 
-            GoodsOrderingData = JsonConvert.SerializeObject(GoodsOrderingData);
-            if (GoodsOrderingData.ToString() == "[]")
-            {
+            
+            
+            
                 Boolean flag = await context.insert(GoodsOrdering);
 
                 return flag;
-            }
+            
 
             return false;
         }
