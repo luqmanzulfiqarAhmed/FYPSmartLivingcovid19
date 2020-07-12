@@ -56,9 +56,7 @@ namespace smartLiving.Controllers
             }            
             return "no comma detected";
              }
-             return "shop is null";
-        
-
+             return "shop is null";        
                 
          }
 
