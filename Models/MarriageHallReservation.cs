@@ -23,9 +23,14 @@ namespace smartLiving.Models
         public string residentPhoneNumber;
         [BsonElement("residentAddress")]
         public string residentAddress;
-        [BsonElement("marriageHall")]
-        public Property marriageHall;
-        [BsonElement("reservationStatus")]
+        
+        [BsonElement("marriageHallName")]
+        public string marriageHallName;
+    [BsonElement("marriageHallAddress")]
+    public string marriageHallAddress;
+    [BsonElement("marriageHallPropertyId")]
+    public string marriageHallPropertyId;
+        
         public string reservationStatus;
         [BsonElement("eventType")]
         public string eventType;
